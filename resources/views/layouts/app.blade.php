@@ -65,7 +65,7 @@
     <div class="wrapper">
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="/img/core-img/logo.png" alt="bootraper logo" class="app-logo" style="height:40px">
+                <img src="/img/admin/logo.png" alt="bootraper logo" class="app-logo" style="height:40px">
             </div>
             <ul class="list-unstyled components text-secondary">
                 <li>
@@ -94,14 +94,13 @@
                 <button type="button" id="sidebarCollapse" class="btn btn-outline-secondary default-secondary-menu"><i class="fas fa-bars"></i><span></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
-
                         <li class="nav-item dropdown">
                             <div class="nav-dropdown">
                                 <a href="" class="nav-item nav-link dropdown-toggle text-secondary" data-toggle="dropdown"><i class="fas fa-user"></i> <span>John Doe</span> <i style="font-size: .8em;" class="fas fa-caret-down"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right nav-link-menu">
                                     <ul class="nav-list">
                                         <div class="dropdown-divider"></div>
-                                        <li><a href="" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                                        <li><a href="" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -109,13 +108,7 @@
                     </ul>
                 </div>
             </nav>
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="page-title">
-                        <h3>Content Goes Here</h3>
-                    </div>
-                </div>
-            </div>
+            @yield('content')
         </div>
     </div>
 

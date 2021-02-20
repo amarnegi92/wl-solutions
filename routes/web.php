@@ -29,6 +29,8 @@ Route::get('/arrived', [App\Http\Controllers\EndUserController::class, 'arrived'
 //Admin Routes
 Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin/dashboard');
 Route::get('/admin/customers', [App\Http\Controllers\AdminController::class, 'customers'])->name('admin/customers');
+Route::get('/admin/add-customer', [App\Http\Controllers\AdminController::class, 'add_customer'])->name('admin/add-customer');
+Route::get('/admin/add-package', [App\Http\Controllers\AdminController::class, 'add_package'])->name('admin/add-package');
 Route::get('/admin/arrived', [App\Http\Controllers\AdminController::class, 'arrived'])->name('admin/arrived');
 Route::get('/admin/sea-transport', [App\Http\Controllers\AdminController::class, 'sea_transport'])->name('admin/sea-transport');
 Route::get('/admin/air-transport', [App\Http\Controllers\AdminController::class, 'air_transport'])->name('admin/air-transport');

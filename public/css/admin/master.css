@@ -6,8 +6,8 @@
 * Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
 -------------------------------------------------------------------*/
 
-@import "/components/navbar/navbar-dropdowns.css";
-@import "/components/sidebar/sidebar-default.css";
+@import "../components/navbar/navbar-dropdowns.css";
+@import "../components/sidebar/sidebar-default.css";
 
 /*------------------------------------------------------------------
 # [Color codes]

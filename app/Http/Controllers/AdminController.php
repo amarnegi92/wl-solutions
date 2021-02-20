@@ -18,34 +18,48 @@ class AdminController extends Controller
      */
     function customers()
     {
-        return view('admin.dashboard');
+        return view('admin.customers');
+    }
+    /**
+     * 
+     */
+    function add_customer()
+    {
+        return view('admin.add_customer');
+    }
+    /**
+     * 
+     */
+    function add_package()
+    {
+        return view('admin.add_package');
     }
     /**
      * 
      */
     function arrived()
     {
-        return view('admin.dashboard');
+        return view('admin.arrived');
     }
     /**
      * 
      */
     function sea_transport()
     {
-        return view('admin.dashboard');
+        return view('admin.sea_transport');
     }
     /**
      * 
      */
     function air_transport()
     {
-        return view('admin.dashboard');
+        return view('admin.air_transport');
     }
     /**
      * 
      */
     function news()
     {
-        return view('admin.dashboard');
+        return view('admin.news');
     }
 }
