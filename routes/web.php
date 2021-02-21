@@ -27,13 +27,20 @@ Route::get('/air-transport', [App\Http\Controllers\EndUserController::class, 'ai
 Route::get('/arrived', [App\Http\Controllers\EndUserController::class, 'arrived'])->name('arrived');
 
 //Admin Routes
-Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin/dashboard');
-Route::get('/admin/customers', [App\Http\Controllers\AdminController::class, 'customers'])->name('admin/customers');
-Route::get('/admin/add-customer', [App\Http\Controllers\AdminController::class, 'add_customer'])->name('admin/add-customer');
-Route::get('/admin/add-package', [App\Http\Controllers\AdminController::class, 'add_package'])->name('admin/add-package');
-Route::get('/admin/arrived', [App\Http\Controllers\AdminController::class, 'arrived'])->name('admin/arrived');
-Route::get('/admin/sea-transport', [App\Http\Controllers\AdminController::class, 'sea_transport'])->name('admin/sea-transport');
-Route::get('/admin/air-transport', [App\Http\Controllers\AdminController::class, 'air_transport'])->name('admin/air-transport');
-Route::get('/admin/news', [App\Http\Controllers\AdminController::class, 'news'])->name('admin/news');
+Route::group(['prefix'=>'admin'], function() {
+    Route::get('login', [App\Http\Controllers\Auth\AuthController::class, 'index'])->name('admin/login');
+    Route::post('login', [App\Http\Controllers\Auth\AuthController::class, 'postLogin'])->name('admin/post/login');
+    Route::get('logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('admin/logout');
+});
+Route::group(['prefix'=>'admin', 'middleware' => ['auth']], function() {
+ 
+    Route::get('dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin/dashboard');
+    Route::get('customers', [App\Http\Controllers\AdminController::class, 'customers'])->name('admin/customers');
+    Route::get('add-customer', [App\Http\Controllers\AdminController::class, 'add_customer'])->name('admin/add-customer');
+    Route::get('add-package', [App\Http\Controllers\AdminController::class, 'add_package'])->name('admin/add-package');
+    Route::get('arrived', [App\Http\Controllers\AdminController::class, 'arrived'])->name('admin/arrived');
+    Route::get('sea-transport', [App\Http\Controllers\AdminController::class, 'sea_transport'])->name('admin/sea-transport');
+    Route::get('air-transport', [App\Http\Controllers\AdminController::class, 'air_transport'])->name('admin/air-transport');
+    Route::get('news', [App\Http\Controllers\AdminController::class, 'news'])->name('admin/news');
 
-
+});

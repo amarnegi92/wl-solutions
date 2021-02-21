@@ -8,8 +8,6 @@
     <meta name="theme-color" content="#0134d4">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    
-    
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -22,13 +20,14 @@
     <!-- Favicon-->
     <link rel="icon" href="img/core-img/favicon.ico">
     <link rel="apple-touch-icon" href="img/icons/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="img/icons/icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="167x167" href="img/icons/icon-167x167.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/icons/icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('img/icons/icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="167x167" href="{{ asset('img/icons/icon-167x167.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/icons/icon-180x180.png') }}">
 
     <!-- Just include for Admin -->
     <link rel="stylesheet" href="{{asset('css/admin/bootstrap4/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/admin/master.css')}}">
+    <link rel="stylesheet" href="{{asset('css/admin/auth.css')}}">
+
 
     <!-- Web App Manifest-->
     <link rel="manifest" href="manifest.json">
