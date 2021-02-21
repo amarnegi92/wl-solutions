@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserAddress extends Migration
+class Address extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUserAddress extends Migration
      */
     public function up()
     {
-        Schema::create('user_address', function (Blueprint $table) {
+        Schema::create('address', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->longText('address');
@@ -28,6 +28,7 @@ class CreateUserAddress extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_address');
+        Schema::dropIfExists('address');
     }
 }
+

@@ -28,12 +28,24 @@ Route::get('/arrived', [App\Http\Controllers\EndUserController::class, 'arrived'
 
 //Admin Routes
 Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin/dashboard');
-Route::get('/admin/customers', [App\Http\Controllers\AdminController::class, 'customers'])->name('admin/customers');
-Route::get('/admin/add-customer', [App\Http\Controllers\AdminController::class, 'add_customer'])->name('admin/add-customer');
+
+
 Route::get('/admin/add-package', [App\Http\Controllers\AdminController::class, 'add_package'])->name('admin/add-package');
 Route::get('/admin/arrived', [App\Http\Controllers\AdminController::class, 'arrived'])->name('admin/arrived');
 Route::get('/admin/sea-transport', [App\Http\Controllers\AdminController::class, 'sea_transport'])->name('admin/sea-transport');
 Route::get('/admin/air-transport', [App\Http\Controllers\AdminController::class, 'air_transport'])->name('admin/air-transport');
 Route::get('/admin/news', [App\Http\Controllers\AdminController::class, 'news'])->name('admin/news');
+
+
+Route::get('/admin/add-customer', function () {
+    return view('admin.add_customer');
+});//list
+
+Route::get('/admin/customers', [App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
+Route::post('/admin/add-customer', [App\Http\Controllers\CustomerController::class, 'add'])->name('admin/add-customer');
+Route::get('/admin/edit-customer/{id}', [App\Http\Controllers\CustomerController::class, 'getEdit'])->name('customer.edit');
+Route::get('/admin/edit-customer', [App\Http\Controllers\CustomerController::class, 'getDelet'])->name('customer.delete');
+
+
 
 

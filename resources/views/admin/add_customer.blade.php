@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+
+<form action="" method="post" action="{{ route('customers') }}">
+    @csrf
 <div class="content">
     <div class="container-fluid">
 
