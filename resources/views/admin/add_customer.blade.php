@@ -1,5 +1,13 @@
 @extends('layouts.admin.app')
 @section('content')
+
+<?php //dd($user); ?>
+<form action="" method="post" action="{{ route('customers.add') }}">
+    @csrf
+    <?php if(isset($user['id']) && !empty($user['id']) ){ ?>
+        <input type="hidden" name ="user_id" value="<?php echo $user['id'] ?>">
+    <?php } ?>
+
 <div class="content">
     <div class="container-fluid">
 
@@ -14,14 +22,14 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="customername">Customer Name</label>
-                                    <input type="text" class="form-control" name="customername" placeholder="Customer Name" required>
+                                    <input type="text" class="form-control" name="customername" placeholder="Customer Name" required value = "<?php echo isset($user['first_name']) ?  $user['first_name'] :''?>">
                                     <small class="form-text text-muted">Enter a valid customer name.</small>
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter customer name.</div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="customercode">Customer code</label>
-                                    <input type="text" class="form-control" name="customercode" placeholder="Customer Code" required>
+                                    <input type="text" class="form-control" name="customercode" placeholder="Customer Code" required value="<?php echo isset($user['e_code']) ?  $user['e_code'] :''?>"> 
                                     <small class="form-text text-muted">Enter a valid customer code.</small>
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter customer code.</div>
@@ -29,14 +37,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="address">Address</label>
-                                <input type="text" class="form-control" name="address" placeholder="Customer address" required>
+                                <input type="text" class="form-control" name="address" placeholder="Customer address" required
+                                value="<?php echo isset($user['address']) ?  $user['address'] :''?>">
                                 <div class="valid-feedback">Looks good!</div>
                                 <div class="invalid-feedback">Please enter adress.</div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="mobile">Mobile Phone</label>
-                                    <input type="number" class="form-control" name="customermobile" placeholder="Customer Phone" required>
+                                    <input type="number" class="form-control" name="customermobile" placeholder="Customer Phone" required value="<?php echo isset($user['mobile']) ?  $user['mobile'] :''?>">
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter customer Phone.</div>
                                 </div>
@@ -51,7 +60,9 @@
 
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Customer</button>
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> 
+                                <?php echo isset($user['id']) ? 'Update Customer' : 'Add Customer' ?>
+                            </button>
                         </form>
                     </div>
                 </div>

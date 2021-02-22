@@ -41,12 +41,31 @@ Route::group(['prefix'=>'admin'], function() {
 Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function() {
  
     Route::get('dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin/dashboard');
-    Route::get('customers', [App\Http\Controllers\AdminController::class, 'customers'])->name('admin/customers');
-    Route::get('add-customer', [App\Http\Controllers\AdminController::class, 'add_customer'])->name('admin/add-customer');
+    // Route::get('customers', [App\Http\Controllers\AdminController::class, 'customers'])->name('admin/customers');
+    
     Route::get('add-package', [App\Http\Controllers\AdminController::class, 'add_package'])->name('admin/add-package');
     Route::get('arrived', [App\Http\Controllers\AdminController::class, 'arrived'])->name('admin/arrived');
     Route::get('sea-transport', [App\Http\Controllers\AdminController::class, 'sea_transport'])->name('admin/sea-transport');
     Route::get('air-transport', [App\Http\Controllers\AdminController::class, 'air_transport'])->name('admin/air-transport');
     Route::get('news', [App\Http\Controllers\AdminController::class, 'news'])->name('admin/news');
+
+    //Customers route ***** Start ******
+    Route::get('customers', [App\Http\Controllers\CustomerController::class, 'index'])->name('customers.list');
+    // Route::get('add-customer', [App\Http\Controllers\AdminController::class, 'add_customer'])->name('admin/add-customer');
+    Route::get('add-customer', function () { return view('admin.add_customer'); })->name('admin.addC');
+
+    Route::post('add-customer', [App\Http\Controllers\CustomerController::class, 'add'])->name('customers.add');
+    Route::get('edit-customer/{id}', [App\Http\Controllers\CustomerController::class, 'getEdit'])->name('customer.edit');
+    Route::post('edit-customer/{id}', [App\Http\Controllers\CustomerController::class, 'add'])->name('customer.editPost');
+    Route::get('delete-customer', [App\Http\Controllers\CustomerController::class, 'getDelet'])->name('customer.delete');
+
+    //Customer Route ##### End ####
+
+
+    // Route::get('add-customer', function () { return view('admin.add_customer'); });//list
+
+// Route::post('/admin/add-customer', [App\Http\Controllers\CustomerController::class, 'add'])->name('admin/add-customer');
+// Route::get('/admin/edit-customer/{id}', [App\Http\Controllers\CustomerController::class, 'getEdit'])->name('customer.edit');
+// Route::get('/admin/edit-customer', [App\Http\Controllers\CustomerController::class, 'getDelet'])->name('customer.delete');
 
 });
