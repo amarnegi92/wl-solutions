@@ -68,7 +68,7 @@
                                     <div class="dropdown-menu dropdown-menu-right nav-link-menu">
                                         <ul class="nav-list">
                                             <div class="dropdown-divider"></div>
-                                            <li><a href="" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                                            <li><a href="{{route('admin/logout')}}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
                                         </ul>
                                     </div>
                                 </div>

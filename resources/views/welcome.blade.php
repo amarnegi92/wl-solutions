@@ -132,7 +132,7 @@
             </a>
             </div>
             <div class="col-6">
-              <a href="contact.html">
+              <a href="{{ route('contact_us') }}">
               <div class="card text-center shadow-sm wow fadeInUp" data-wow-duration="1s">
                 <div class="card-body"><img src="img/demo-img/location.png" alt="">
                   <h6 class="mb-0">Addresses</h6>
