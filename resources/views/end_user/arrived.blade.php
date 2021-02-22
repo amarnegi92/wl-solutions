@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.customer.app')
 @section('content')
 <!-- Setting Popup Card-->
 <!-- Header Area-->

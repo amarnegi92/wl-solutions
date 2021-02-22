@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="css/apexcharts.css">
     <!-- Core Stylesheet-->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- Web App Manifest-->
     <link rel="manifest" href="manifest.json">
   </head>
@@ -99,11 +99,11 @@
                     @if (Route::has('login'))
                       <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                           @auth
-                              <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
+                              <a href="{{ route('profile') }}" class="text-sm text-gray-700 underline">Profile</a>
                           @else
                               <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
                               @if (Route::has('register'))
-                                  <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                                  <!-- <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a> -->
                               @endif
                           @endauth
                       </div>
@@ -114,7 +114,7 @@
             </a>
             </div>
             <div class="col-6">
-              <a href="news.html">
+              <a href="{{ route('news') }}">
               <div class="card text-center shadow-sm wow fadeInUp" data-wow-duration="1s">
                 <div class="card-body"><img src="img/demo-img/about-us.png" alt="">
                   <h6 class="mb-0">News</h6>
@@ -123,7 +123,7 @@
             </a>
             </div>
             <div class="col-6">
-              <a href="about-us.html">
+              <a href="{{ route('about_us') }}">
               <div class="card text-center shadow-sm wow fadeInUp" data-wow-duration="1s">
                 <div class="card-body"><img src="img/demo-img/services.png" alt="">
                   <h6 class="mb-0">About Us</h6>

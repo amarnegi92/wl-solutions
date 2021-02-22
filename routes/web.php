@@ -15,13 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('baseurl');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('news', function() {return view('news');})->name('news');
+Route::get('about_us', function() {return view('about_us');})->name('about_us');
 
 //End User Routes
-Route::get('/profile', [App\Http\Controllers\EndUserController::class, 'profile'])->name('profile');
+Route::get('profile', [App\Http\Controllers\EndUserController::class, 'profile'])->name('profile');
 Route::get('/sea-transport', [App\Http\Controllers\EndUserController::class, 'sea_transport'])->name('sea-transport');
 Route::get('/air-transport', [App\Http\Controllers\EndUserController::class, 'air_transport'])->name('air-transport');
 Route::get('/arrived', [App\Http\Controllers\EndUserController::class, 'arrived'])->name('arrived');

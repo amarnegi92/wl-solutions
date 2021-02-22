@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.customer.app')
 @section('content')
 <!-- Internet Connection Status-->
 <!-- Setting Popup Card-->
