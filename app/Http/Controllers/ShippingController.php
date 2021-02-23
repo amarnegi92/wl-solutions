@@ -32,5 +32,14 @@ class ShippingController extends Controller
         return view('admin.arrived');
 dd("kddjd");
     }
+
+    /**
+    * addPackage
+    *   -- Function to return add package form
+    *
+    */
+    public function addPackage(){
+        return view('admin.add_package');
+    }
 }
 ?>

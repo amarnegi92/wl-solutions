@@ -43,7 +43,7 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function
     Route::get('dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin/dashboard');
     // Route::get('customers', [App\Http\Controllers\AdminController::class, 'customers'])->name('admin/customers');
     
-    Route::get('add-package', [App\Http\Controllers\AdminController::class, 'add_package'])->name('admin/add-package');
+    // Route::get('add-package', [App\Http\Controllers\AdminController::class, 'add_package'])->name('admin/add-package');
     // Route::get('arrived', [App\Http\Controllers\AdminController::class, 'arrived'])->name('admin/arrived');
     Route::get('sea-transport', [App\Http\Controllers\AdminController::class, 'sea_transport'])->name('admin/sea-transport');
     Route::get('air-transport', [App\Http\Controllers\AdminController::class, 'air_transport'])->name('admin/air-transport');
@@ -62,6 +62,9 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function
 
     // Arrived route **** Start ********
     Route::get('arrived', [App\Http\Controllers\ShippingController::class, 'index'])->name('admin.arrived');
+    Route::get('add-package', [App\Http\Controllers\ShippingController::class, 'addPackage'])->name('admin.addPackage');
+    Route::post('add-package', [App\Http\Controllers\ShippingController::class, 'postAddPackage'])->name('admin.addPackage');
+
     // Arrived route **** end ********
 
 
