@@ -1,6 +1,10 @@
 @extends('layouts.admin.app')
 @section('content')
-<?php //dd($users); ?>
+<style>
+tr.disabled {
+    background-color: rgba(0,0,0,.075);
+}
+</style>
 <div class="content">
     <div class="container-fluid">
         <div class="page-title">
@@ -25,7 +29,7 @@
                         <?php
                         if(isset($users)){
                             foreach ($users as $user_id => $user) { ?>
-                                <tr>
+                                <tr class="{{ $user['status'] == config('user.status.inactive') ? 'disabled' : null }}">
                                     <td>{!! $user['name'] !!}</td>
                                     <td>{!! $user['mobile'] !!}</td>
                                     <td>{!! $user['e_code'] !!}</td>

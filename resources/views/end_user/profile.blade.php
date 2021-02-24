@@ -1,5 +1,6 @@
 @extends('layouts.customer.app')
 @section('content')
+
 <!-- Setting Popup Card-->
 <!-- Header Area-->
 <div class="header-area" id="headerArea">
@@ -10,7 +11,7 @@
 
             <!-- Page Title-->
             <div class="page-heading">
-                <h6 class="mb-0">E-9072</h6>
+                <h6 class="mb-0">{{ Auth::user()->e_code }}</h6>
             </div>
             <!-- Settings-->
             <defs>
@@ -30,8 +31,8 @@
     <div class="container">
         <div class="card">
             <div class="card-body px-5 text-center"><img class="mb-4" src="img/core-img/logo.png" alt="">
-                <h4>Avar Othman</h4>
-                <p class="mb-4">E-9072</p><a class="btn btn-creative btn-info" href="#">Change Password</a>
+                <h4>{{ Auth::user()->name }}</h4>
+                <p class="mb-4">{{ Auth::user()->e_code }}</p><a class="btn btn-creative btn-info" href="#">Change Password</a>
                 <p class="mb-4"></p>
                 @guest
                 @else

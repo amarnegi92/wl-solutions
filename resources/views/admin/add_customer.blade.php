@@ -22,7 +22,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="customername">Customer Name</label>
-                                    <input type="text" class="form-control" name="customername" placeholder="Customer Name" required value = "<?php echo isset($user['first_name']) ?  $user['first_name'] :''?>">
+                                    <input type="text" class="form-control" name="customername" placeholder="Customer Name" required value = "<?php echo isset($user['name']) ?  $user['name'] :''?>">
                                     <small class="form-text text-muted">Enter a valid customer name.</small>
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter customer name.</div>
@@ -52,13 +52,13 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" name="customerpassword" placeholder="Customer Password" required>
+                                    <input type="password" class="form-control" name="customerpassword" placeholder="Customer Password" {{ request()->route('id') ? null : 'required' }} >
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter customer Password.</div>
                                 </div>
                                 @if (request()->route('id'))
                                     <div class="form-group col-md-6">
-                                        <label for="status">Example select</label>
+                                        <label for="status">Status</label>
                                         <select class="form-control" name="status" id="status">
                                         <option {{ $user['status'] == config('user.status.active') ? 'selected': null }} value="{{ config('user.status.active') }}">Active</option>
                                         <option {{ $user['status'] == config('user.status.inactive') ? 'selected': null }} value="{{ config('user.status.inactive') }}">Inactive</option>

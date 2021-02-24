@@ -31,17 +31,18 @@ class CustomerController extends Controller
     {
         $allUsers = $view_data = array();
         try{
-            $allUsers = User::whereUserType(2)->get();
+            $allUsers = User::whereUserType(config('user.customer'))->get();
+
             if(!empty($allUsers) && (count($allUsers) > 0) ){
                 $allUsers = $allUsers->toArray();
                 foreach($allUsers as $user){
                     $address = Address::whereUserId($user['id'])->pluck('address');
-                    // dd($address);
                     $view_data[$user['id']] = array(
-                        'name' => $user['first_name'],
+                        'name' => $user['name'],
                         'address' => isset($address[0]) ? $address[0] : '',
                         'mobile' => $user['mobile'],
                         'e_code' => $user['e_code'],
+                        'status' => $user['status']
                     );
                 }
             }
@@ -57,54 +58,54 @@ class CustomerController extends Controller
 
     public function add(Request $request){
         try{
-        if($request->get('user_id')){
 
-        } else {
-            $this->validate($request, [
+            $rules = [
                 'customername' => 'required',
                 'customermobile' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
                 'customercode'=>'required',
                 'customerpassword' => 'required'
-            ]);
-        }
+            ];
+            if($request->get('user_id')){
+                unset($rules['customerpassword']);
+            }
 
-        $user = array(
-            'first_name' => $request->get('customername'),
-            'last_name' => $request->get('customername'),
-            'email' => $request->get('customermobile'),
-            'e_code' => $request->get('customercode'),
-            'password' => Hash::make($request->get('customerpassword')),
-            'mobile' => $request->get('customermobile'),
-            'status' => $request->get('status') ?? config('user.status.active')
-        );
-        if(!$request->get('customerpassword')){
-            unset($user['password']);
-        }
-  
-        
-        //  Store data in database
-        if($request->get('user_id')){
-            $user_id = User::whereId($request->get('user_id'))->update($user);
-        } else {
-            $user_id = User::create($user);
-        }
-        
-        // dd($user_id);
-        if(isset($user_id->id) && !empty($user_id->id)){
-            $address = array(
-                'user_id' => $user_id->id,
-                'address' => $request->get('address'),
+            $this->validate($request, $rules);
+
+            $user = array(
+                'name' => $request->get('customername'),
+                'email' => $request->get('customermobile'),
+                'e_code' => $request->get('customercode'),
+                'password' => empty($request->get('customerpassword')) ? $request->get('customerpassword') :
+                    Hash::make($request->get('customerpassword')),
+                'mobile' => $request->get('customermobile'),
+                'status' => $request->get('status') ?? config('user.status.active')
             );
-        }
-        if($request->get('user_id')){
-            $address = array(
-                // 'user_id' => $user_id->id,
-                'address' => $request->get('address'),
-            );
-            Address::whereUserId($request->get('user_id'))->update($address);
-        } else {
-            Address::create($address);
-        }
+
+            if(!$request->get('customerpassword')){
+                unset($user['password']);
+            }
+
+            //  Store data in database
+            $user_id = $request->get('user_id') ? User::whereId($request->get('user_id'))->update($user) 
+                :  User::create($user);
+            
+    
+            if(isset($user_id->id) && !empty($user_id->id)){
+                $address = array(
+                    'user_id' => $user_id->id,
+                    'address' => $request->get('address'),
+                );
+            }
+
+            if ($request->get('user_id')){
+                $address = array(
+                    // 'user_id' => $user_id->id,
+                    'address' => $request->get('address'),
+                );
+                Address::whereUserId($request->get('user_id'))->update($address);
+            } else {
+                Address::create($address);
+            }
         
         } catch (\Exception $e){
             Log::error('Error in Customer->add'.$e->getMessage() .'\n');
