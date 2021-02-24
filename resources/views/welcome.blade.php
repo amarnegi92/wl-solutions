@@ -92,7 +92,7 @@
         <div class="container">
           <div class="row g-3">
             <div class="col-6">
-              <a href="login.html">
+              <a href="@auth {{ route('profile') }} @else {{ route('login') }} @endauth">
               <div class="card text-center shadow-sm wow fadeInUp" data-wow-duration="1s">
                 <div class="card-body"><img src="img/demo-img/person-male.png" alt="">
                   <h6 class="mb-0">
