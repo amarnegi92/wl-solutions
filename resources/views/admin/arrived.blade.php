@@ -77,7 +77,7 @@
                             <th>Confermation Date</th>
                             <th>Description</th>
                             <th>Status</th>
-                            <th></th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -98,8 +98,17 @@
                                 </td>
                                 <td class="text-right">
 
-                                    <a href="" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i></a>
-                                    <a href="" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i></a>
+
+                                    <a href="{{ route('package.edit',$package['id'] ) }}" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i></a>
+                                        <a href="{{ route('package.delete',$package['id'] ) }}" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i>
+                                        </a>
+
+
+
+
+
+                                   <!--  <a href="" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i></a>
+                                    <a href="" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i></a> -->
                                 </td>
                             </tr>
                         <?php }

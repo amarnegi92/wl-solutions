@@ -71,6 +71,10 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function
     Route::get('add-package', [App\Http\Controllers\ShippingController::class, 'addPackage'])->name('admin.addPackage');
     Route::post('add-package', [App\Http\Controllers\ShippingController::class, 'postAddPackage'])->name('admin.addPackage');
 
+    Route::get('edit-package/{id}', [App\Http\Controllers\ShippingController::class, 'getEditPackage'])->name('package.edit');
+    Route::post('edit-package/{id}', [App\Http\Controllers\ShippingController::class, 'postAddPackage'])->name('package.editPost');
+    Route::get('delete-package/{id}', [App\Http\Controllers\ShippingController::class, 'deleteArrived'])->name('package.delete');
+
     // Arrived route **** end ********
 
 
