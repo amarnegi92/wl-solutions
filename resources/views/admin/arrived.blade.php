@@ -81,100 +81,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><label class="checkbox-inline mx-sm-3 mb-1">
-                                    <input id="inlineCheckbox2" type="checkbox" value="option2">
-                                </label></td>
-                            <td>45215</td>
-                            <td>E-9072</td>
-                            <td>01/01/2022</td>
-                            <td>here is the description of the text</td>
-                            <td>
-                                <h5><span class="badge badge-danger">Canceled</span></h5>
-                            </td>
-                            <td class="text-right">
+                        <?php
+                        foreach ($all_package as $package) { ?>
+                            <tr>
+                                <td><label class="checkbox-inline mx-sm-3 mb-1">
+                                        <input id="inlineCheckbox{!! $package['id'] !!}" type="checkbox" value="{!! $package['id'] !!}">
+                                    </label></td>
+                                <td>{!! $package['order_number'] !!}</td>
+                                <td>{!! $package['customer_code'] !!}</td>
+                                <td>{!! $package['conf_date'] !!}</td>
+                                <td>{!! $package['description'] !!}</td>
+                                <td>{!! $package['status'] !!}
+                                    <!-- <h5><span class="badge badge-danger">Canceled</span></h5> -->
+                                    <!-- <h5><span class="badge badge-success">delivered</span></h5> -->
+                                    <!-- <h5><span class="badge badge-info">Arrived</span></h5> -->
+                                </td>
+                                <td class="text-right">
 
-                                <a href="" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i></a>
-                                <a href="" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><label class="checkbox-inline mx-sm-3 mb-1">
-                                    <input id="inlineCheckbox2" type="checkbox" value="option2">
-                                </label></td>
-                            <td>45215</td>
-                            <td>E-9072</td>
-                            <td>01/01/2021</td>
-                            <td>here is the description of the text</td>
-                            <td>
-                                <h5><span class="badge badge-warning">shipped</span></h5>
-                            </td>
-                            <td class="text-right">
-
-                                <a href="" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i></a>
-                                <a href="" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><label class="checkbox-inline mx-sm-3 mb-1">
-                                    <input id="inlineCheckbox2" type="checkbox" value="option2">
-                                </label></td>
-                            <td>45215</td>
-                            <td>E-9072</td>
-                            <td>01/01/2021</td>
-                            <td>here is the description of the text</td>
-                            <td>
-                                <h5><span class="badge badge-success">delivered</span></h5>
-                            </td>
-                            <td class="text-right">
-
-                                <a href="" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i></a>
-                                <a href="" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><label class="checkbox-inline mx-sm-3 mb-1">
-                                    <input id="inlineCheckbox2" type="checkbox" value="option2">
-                                </label></td>
-                            <td>45215</td>
-                            <td>E-9072</td>
-                            <td>01/01/2021</td>
-                            <td>here is the description of the text</td>
-                            <td>
-                                <h5><span class="badge badge-info">Arrived</span></h5>
-                            </td>
-                            <td class="text-right">
-
-                                <a href="" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i></a>
-                                <a href="" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><label class="checkbox-inline mx-sm-3 mb-1">
-                                    <input id="inlineCheckbox2" type="checkbox" value="option2">
-                                </label></td>
-                            <td>45215</td>
-                            <td>E-9072</td>
-                            <td>01/01/2021</td>
-                            <td>here is the description of the text</td>
-                            <td>
-                                <h5><span class="badge badge-warning">New</span></h5>
-                            </td>
-                            <td class="text-right">
-
-                                <a href="" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i></a>
-                                <a href="" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-
+                                    <a href="" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i></a>
+                                    <a href="" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        <?php }
+                        ?>
                     </tbody>
                 </table>
             </div>

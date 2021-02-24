@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 @section('content')
-<form action="" method="post" action="{{ route('customers.add') }}">
+<form action="" method="post" action="{{ route('admin.addPackage') }}">
     @csrf
     <div class="content">
         <div class="container-fluid">
@@ -50,7 +50,7 @@
                                             <option value="" selected>Choose...</option>
                                             <option value="1">Confirmed</option>
                                             <option value="2">Partially purchased</option>
-                                            <option value="2">Fully purchased</option>
+                                            <option value="3">Fully purchased</option>
 
                                         </select>
                                         <div class="valid-feedback">Looks good!</div>
