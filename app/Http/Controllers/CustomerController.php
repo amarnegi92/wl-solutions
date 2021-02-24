@@ -75,6 +75,7 @@ class CustomerController extends Controller
             'e_code' => $request->get('customercode'),
             'password' => Hash::make($request->get('customerpassword')),
             'mobile' => $request->get('customermobile'),
+            'status' => $request->get('status') ?? config('user.status.active')
         );
         if(!$request->get('customerpassword')){
             unset($user['password']);
@@ -128,4 +129,19 @@ class CustomerController extends Controller
         }
         return view('admin.add_customer',array('user' => $userData));
     }
+
+    public function getDelete($id) {
+        try {
+            $userData = User::whereId($id)->first();
+            if($userData) {
+                $userData->status = config('user.status.inactive');
+                $userData->save();
+            }
+        } catch(\Exception $ex) {
+            Log::error('Error in Customer->getDelete() '. $ex->getMessage(). '\n');
+        }
+        
+        return redirect()->route('customers.list');
+    }
+
 }

@@ -27,6 +27,7 @@
         <!-- Just include for Admin -->
         <link rel="stylesheet" href="{{ asset('css/admin/bootstrap4/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/admin/dataTables.bootstrap4.min.css') }}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dmuy/MDTimePicker@v1.0.2-rc2/mdtimepicker.min.css">
         <link rel="stylesheet" href="{{ asset('css/admin/master.css') }}">
     </head>
     <body>
@@ -64,11 +65,11 @@
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item dropdown">
                                 <div class="nav-dropdown">
-                                    <a href="" class="nav-item nav-link dropdown-toggle text-secondary" data-toggle="dropdown"><i class="fas fa-user"></i> <span>John Doe</span> <i style="font-size: .8em;" class="fas fa-caret-down"></i></a>
+                                    <a href="" class="nav-item nav-link dropdown-toggle text-secondary" data-toggle="dropdown"><i class="fas fa-user"></i> <span>{{ Auth::User()->first_name }}</span> <i style="font-size: .8em;" class="fas fa-caret-down"></i></a>
                                     <div class="dropdown-menu dropdown-menu-right nav-link-menu">
                                         <ul class="nav-list">
                                             <div class="dropdown-divider"></div>
-                                            <li><a href="{{route('admin/logout')}}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                                            <li><a href="{{ route('admin/logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -81,10 +82,11 @@
         </div>
         <script src="{{ asset('js/admin/jquery3/jquery.min.js') }}"></script>
         <script src="{{ asset('js/admin/bootstrap4/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/gh/dmuy/MDTimePicker@v1.0.2-rc2/mdtimepicker.min.js"></script>
         <script src="{{ asset('js/admin/fontawesome5/js/solid.min.js') }}"></script>
         <script src="{{ asset('js/admin/fontawesome5/js/fontawesome.min.js') }}"></script>
         <script src="{{ asset('js/admin/DataTables/datatables.min.js') }}"></script>
-        <script src="{{ asset('js/admin/DataTables/initiate-datatables.js') }}"></script>
+        <script src="{{ asset('js/admin/initiate-datatables.js') }}"></script>
         <script src="{{ asset('js/admin/script.js') }}"></script>
     </body>
 </html>

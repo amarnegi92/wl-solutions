@@ -17,7 +17,7 @@
                             <th>Phone</th>
                             <th>Code</th>
                             <th>Address</th>
-                            <th></th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

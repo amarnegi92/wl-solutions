@@ -56,6 +56,6 @@ class AuthController extends Controller
     public function logout() {
         Session::flush();
         Auth::logout();
-        return Redirect('login');
+        return Redirect('admin/login');
     }
 }

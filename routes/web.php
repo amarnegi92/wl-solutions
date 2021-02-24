@@ -57,7 +57,7 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function
     Route::post('add-customer', [App\Http\Controllers\CustomerController::class, 'add'])->name('customers.add');
     Route::get('edit-customer/{id}', [App\Http\Controllers\CustomerController::class, 'getEdit'])->name('customer.edit');
     Route::post('edit-customer/{id}', [App\Http\Controllers\CustomerController::class, 'add'])->name('customer.editPost');
-    Route::get('delete-customer', [App\Http\Controllers\CustomerController::class, 'getDelet'])->name('customer.delete');
+    Route::get('delete-customer/{id}', [App\Http\Controllers\CustomerController::class, 'getDelete'])->name('customer.delete');
     //Customer Route ##### End ####
 
     // Arrived route **** Start ********

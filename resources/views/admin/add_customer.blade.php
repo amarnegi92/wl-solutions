@@ -15,9 +15,9 @@
 
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header">Add Customer</div>
+                    <div class="card-header">{{ request()->route('id') ? 'Edit' : 'Add'  }} Customer</div>
                     <div class="card-body">
-                        <h5 class="card-title">Add a new Customer</h5>
+                        <h5 class="card-title">{{ request()->route('id') ? 'Edit' : 'Add a new'  }} Customer</h5>
                         <form class="needs-validation" novalidate accept-charset="utf-8">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -56,7 +56,15 @@
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter customer Password.</div>
                                 </div>
-
+                                @if (request()->route('id'))
+                                    <div class="form-group col-md-6">
+                                        <label for="status">Example select</label>
+                                        <select class="form-control" name="status" id="status">
+                                        <option {{ $user['status'] == config('user.status.active') ? 'selected': null }} value="{{ config('user.status.active') }}">Active</option>
+                                        <option {{ $user['status'] == config('user.status.inactive') ? 'selected': null }} value="{{ config('user.status.inactive') }}">Inactive</option>
+                                        </select>
+                                    </div>
+                                @endif
 
                             </div>
                             <div class="form-group">
