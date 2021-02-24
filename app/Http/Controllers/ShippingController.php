@@ -31,7 +31,7 @@ class ShippingController extends Controller
     {
         $all_package = array();
         try {
-            $all_package = Arrived::get();
+            $all_package = Arrived::whereStatus(1)->get();
             if (isset($all_package) && count($all_package)) {
                 $all_package = $all_package->toArray();
             }
@@ -69,9 +69,48 @@ class ShippingController extends Controller
                 'status' => $request->get('state'),
                 'description' => $request->get('desc')
             );
-            Arrived::create($package);
+            $arrive_id = $request->get('package_id') ? Arrived::whereId($request->get('package_id'))->update($package) 
+                :  Arrived::create($package);
+
         } catch (\Exception $ex) {
             Log::error('Error in Shipping->postAddPackage() ' . $ex->getMessage() . '\n');
         }
+
+        return redirect('admin/arrived');
     }
+
+    /**
+    *getEditPackage
+    *
+    */
+
+    public function getEditPackage($id){
+        try{
+            $userData = Arrived::whereId($id)->first();
+            if(isset($userData) ){
+                $userData = $userData->toArray();
+            }
+        } catch (\Exception $ex){
+            Log::error('Error in Shippig->getEditPackage() '. $ex->getMessage(). '\n');
+        }
+        return view('admin.add_package',array('package' => $userData));
+    }
+
+    /**
+    * 
+    */
+    public function deleteArrived($id) {
+        try {
+            $userData = Arrived::whereId($id)->first();
+            if($userData) {
+                $userData->status = -1;//config('shipping.status.archive');
+                $userData->save();
+            }
+        } catch(\Exception $ex) {
+            Log::error('Error in Customer->getDelete() '. $ex->getMessage(). '\n');
+        }
+        
+        return redirect('admin/arrived');
+    }
+
 }

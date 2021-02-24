@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Arrived extends Model
 {
     use HasFactory;
+    protected $table = 'arrived';
     protected $fillable = [
         'order_number',
         'conf_date',
