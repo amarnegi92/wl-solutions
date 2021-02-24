@@ -97,7 +97,7 @@
                 <div class="card-body"><img src="img/demo-img/person-male.png" alt="">
                   <h6 class="mb-0">
                     @if (Route::has('login'))
-                      <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                      
                           @auth
                               <a href="{{ route('profile') }}" class="text-sm text-gray-700 underline">Profile</a>
                           @else
@@ -106,7 +106,7 @@
                                   <!-- <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a> -->
                               @endif
                           @endauth
-                      </div>
+                      
                     @endif    
                   </h6>
                 </div>
