@@ -176,4 +176,5 @@ class ShippingController extends Controller
 
         return redirect('admin/arrived');
     }
+
 }
