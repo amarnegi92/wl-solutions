@@ -34,7 +34,8 @@
                             <td class="text-right">
 
                                 <a href="" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i></a>
-                                <a href="" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i></a>
+                                <a href="{{ route('transportair.delete',$batch->id ) }}" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
