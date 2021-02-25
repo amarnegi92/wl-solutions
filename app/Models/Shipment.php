@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Shipment extends Model
 {
     use HasFactory;
+    protected $table = 'shipments';
     protected $fillable = [
         'batch_number',
         'order_number',

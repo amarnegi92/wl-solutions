@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 // use App\Models\User;
 use App\Models\Arrived;
+use App\Models\Shipment;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -31,7 +32,7 @@ class ShippingController extends Controller
     {
         $all_package = array();
         try {
-            $all_package = Arrived::get();
+            $all_package = Arrived::where('status', '!=', -1)->get();
             if (isset($all_package) && count($all_package)) {
                 $all_package = $all_package->toArray();
             }
@@ -69,9 +70,110 @@ class ShippingController extends Controller
                 'status' => $request->get('state'),
                 'description' => $request->get('desc')
             );
-            Arrived::create($package);
+            $arrive_id = $request->get('package_id') ? Arrived::whereId($request->get('package_id'))->update($package) 
+                :  Arrived::create($package);
+
         } catch (\Exception $ex) {
             Log::error('Error in Shipping->postAddPackage() ' . $ex->getMessage() . '\n');
         }
+
+        return redirect('admin/arrived');
+    }
+
+    /**
+    *getEditPackage
+    *
+    */
+
+    public function getEditPackage($id){
+        try{
+            $userData = Arrived::whereId($id)->first();
+            if(isset($userData) ){
+                $userData = $userData->toArray();
+            }
+        } catch (\Exception $ex){
+            Log::error('Error in Shippig->getEditPackage() '. $ex->getMessage(). '\n');
+            dd($ex->getMessage());
+        }
+        return view('admin.add_package',array('package' => $userData));
+    }
+
+    /**
+    * 
+    */
+    public function deleteArrived($id) {
+        try {
+            $userData = Arrived::whereId($id)->first();
+            if($userData) {
+                $userData->status = -1;//config('shipping.status.archive');
+                $userData->save();
+            }
+        } catch(\Exception $ex) {
+            Log::error('Error in Customer->getDelete() '. $ex->getMessage(). '\n');
+        }
+        
+        return redirect('admin/arrived');
+    }
+
+    /**
+    *addShipment
+    * -- function to add/manage shippment
+    */
+    public function addShipment(Request $request){
+        try{
+                
+            $package_ids = $request->get('packageId');
+
+            $transportBy = config('shipment.transport');
+            $shipmentStatus = config('shipment.status');
+
+            if( isset($package_ids) && is_array($package_ids) ){
+                foreach ($package_ids as $p_id) {
+                    $getPackage = array();
+                    $getPackage = Arrived::whereId($p_id)->first();
+                    if(isset($getPackage->id)){
+                        $batch = array(
+                            'batch_number' => $request->get('batchtext'),
+                            // 'order_number'=> $request->get('packageId'),
+                            // 'arrived_id' => $request->get('packageId'),
+                            'date' => $request->get('date'),
+                            'ship_type' => $transportBy[$request->get('optionsRadios')],
+                            'status' => $shipmentStatus[$request->get('status')],
+                            'description' => $request->get('desc'),
+                            'order_number' =>  $getPackage->order_number,
+                            'arrived_id' => $p_id
+                        );
+                        
+                        Shipment::create($batch);
+                        $getPackage->status = 0;
+                        $getPackage->save();
+                    }
+                    
+                }
+            }
+        //     'batch_number',
+        // 'order_number',
+        // 'arrived_id',
+        // 'date',
+        // 'ship_type',
+        // 'status',
+        // 'description'
+
+// "batchtext" => "batch1"
+//   "desc" => "11111aditya"
+//   "date" => "2021-02-25"
+//   "optionsRadios" => "option1"
+//   "status" => "1"
+//   "packageId" => array:2 
+//     0 => "1"
+//     1 => "2"
+
+
+        } catch (\Exception $ex) {
+            Log::error('Error in Shipping->addShipment() '. $ex->getMessage(). '\n');
+            dd($ex->getMessage());
+        }
+
+        return redirect('admin/arrived');
     }
 }

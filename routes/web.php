@@ -45,7 +45,7 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function
     
     // Route::get('add-package', [App\Http\Controllers\AdminController::class, 'add_package'])->name('admin/add-package');
     // Route::get('arrived', [App\Http\Controllers\AdminController::class, 'arrived'])->name('admin/arrived');
-    Route::get('sea-transport', [App\Http\Controllers\AdminController::class, 'sea_transport'])->name('admin/sea-transport');
+    // Route::get('sea-transport', [App\Http\Controllers\AdminController::class, 'sea_transport'])->name('admin/sea-transport');
     Route::get('air-transport', [App\Http\Controllers\AdminController::class, 'air_transport'])->name('admin/air-transport');
     Route::get('news', [App\Http\Controllers\AdminController::class, 'news'])->name('admin/news');
 
@@ -71,6 +71,13 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function
     Route::get('add-package', [App\Http\Controllers\ShippingController::class, 'addPackage'])->name('admin.addPackage');
     Route::post('add-package', [App\Http\Controllers\ShippingController::class, 'postAddPackage'])->name('admin.addPackage');
 
+    Route::get('edit-package/{id}', [App\Http\Controllers\ShippingController::class, 'getEditPackage'])->name('package.edit');
+    Route::post('edit-package/{id}', [App\Http\Controllers\ShippingController::class, 'postAddPackage'])->name('package.editPost');
+    Route::get('delete-package/{id}', [App\Http\Controllers\ShippingController::class, 'deleteArrived'])->name('package.delete');
+
+    Route::post('add-shipment', [App\Http\Controllers\ShippingController::class, 'addShipment'])->name('shipment.add');
+
+    Route::get('sea-transport', [App\Http\Controllers\SeaTransportController::class, 'index'])->name('admin/sea-transport');
     // Arrived route **** end ********
 
 
