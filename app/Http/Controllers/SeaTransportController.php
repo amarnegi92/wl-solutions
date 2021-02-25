@@ -12,4 +12,10 @@ class SeaTransportController extends Controller
 
         return view('admin.sea_transport', compact('sea_transport_batches'));
     }
+
+    public function indexAir() {
+        $sea_transport_batches = Shipment::whereShipType(config('shipment.transport.air'))->get();
+
+        return view('admin.air_transport', compact('sea_transport_batches'));
+    }
 }

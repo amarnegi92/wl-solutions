@@ -13,7 +13,7 @@ class Shipment extends Migration
      */
     public function up()
     {
-        Schema::create('shipment', function (Blueprint $table) {
+        Schema::create('shipments', function (Blueprint $table) {
             $table->id();
             $table->string('batch_number'); //duplicate or comma seprated
             $table->string('order_number'); //
@@ -33,6 +33,6 @@ class Shipment extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shipment');
+        Schema::dropIfExists('shipments');
     }
 }

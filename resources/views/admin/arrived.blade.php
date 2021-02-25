@@ -48,8 +48,12 @@
                                             <select name="status" class="form-control" required>
                                                 <option value="" selected>Choose...</option>
                                                 <option value="in_transit">In transet</option>
-                                                <option value="arrived">Arrived</option>
-                                                <option value="delivered">Delivered</option>
+-                                                <option value="arrived">Arrived</option>
+-                                                <option value="delivered">Delivered</option>
+
+                                                <!-- <option value="1">In transet</option>
+                                                <option value="2">Arrived</option>
+                                                <option value="3">Delivered</option> -->
 
                                             </select>
                                         </div>
@@ -87,13 +91,22 @@
                             foreach ($all_package as $package) { ?>
                                 <tr>
                                     <td><label class="checkbox-inline mx-sm-3 mb-1">
-                                            <input id="inlineCheckbox{!! $package['id'] !!}" name = packageId[] type="checkbox" value="{!! $package['id'] !!}">
+                                            <input id="inlineCheckbox{!! $package['id'] !!}" name = packageId[] type="checkbox" value="{!! $package['id'] !!}" <?php echo ($package['status'] == 0 ? 'disabled' : ''); ?> >
                                         </label></td>
                                     <td>{!! $package['order_number'] !!}</td>
                                     <td>{!! $package['customer_code'] !!}</td>
                                     <td>{!! $package['conf_date'] !!}</td>
                                     <td>{!! $package['description'] !!}</td>
-                                    <td>{!! $package['status'] !!}
+                                    <td>
+                                        <?php if($package['status'] == 0){ ?>
+                                            <h5><span class="badge badge-info">Arrived</span></h5>
+                                        <?php } elseif ($package['status'] == 1) { ?>
+                                            <h5><span class="badge badge-primary">Confirmed</span></h5>
+                                        <?php }elseif ($package['status'] == 2) { ?>
+                                            <h5><span class="badge badge-danger">Partially purchased</span></h5>
+                                        <?php }elseif ($package['status'] == 3) { ?>
+                                            <h5><span class="badge badge-success">Fully purchased</span></h5>
+                                        <?php } ?>
                                         <!-- <h5><span class="badge badge-danger">Canceled</span></h5> -->
                                         <!-- <h5><span class="badge badge-success">delivered</span></h5> -->
                                         <!-- <h5><span class="badge badge-info">Arrived</span></h5> -->
@@ -101,11 +114,9 @@
                                     <td class="text-right">
 
 
-                                        <a href="{{ route('package.edit',$package['id'] ) }}" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i></a>
-                                            <a href="{{ route('package.delete',$package['id'] ) }}" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i>
+                                        <a href="{{ route('package.edit',$package['id'] ) }}" class="btn btn-outline-info btn-rounded <?php echo ($package['status'] == 0 ? 'disabled' : ''); ?> "><i class="fas fa-pen"></i></a>
+                                            <a href="{{ route('package.delete',$package['id'] ) }}" class="btn btn-outline-danger btn-rounded <?php echo ($package['status'] == 0 ? 'disabled' : ''); ?> "><i class="fas fa-trash"></i>
                                             </a>
-
-
 
 
 

@@ -120,7 +120,7 @@ class ShippingController extends Controller
     * -- function to add/manage shippment
     */
     public function addShipment(Request $request){
-        try{
+        // try{
                 
             $package_ids = $request->get('packageId');
 
@@ -169,10 +169,10 @@ class ShippingController extends Controller
 //     1 => "2"
 
 
-        } catch (\Exception $ex) {
-            Log::error('Error in Shipping->addShipment() '. $ex->getMessage(). '\n');
-            dd($ex->getMessage());
-        }
+        // } catch (\Exception $ex) {
+        //     Log::error('Error in Shipping->addShipment() '. $ex->getMessage(). '\n');
+        //     dd($ex->getMessage());
+        // }
 
         return redirect('admin/arrived');
     }

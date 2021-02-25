@@ -11,6 +11,7 @@
                     <thead>
                         <tr>
                             <th>Batch #</th>
+                            <th> Order No. </th>
                             <th>Confermation Date</th>
                             <th>Description</th>
                             <th>Status</th>
@@ -23,10 +24,12 @@
                         <tr id={{!! $batch->id !!}}>
 
                             <td>{{ $batch->batch_number }}</td>
+                            <td>{{ $batch->order_number }}</td>
                             <td>{{ date('d/m/Y', strtotime($batch->date)) }}</td>
                             <td>{{ $batch->description }}</td>
                             <td>
-                                <h5><span class="badge badge-danger">{{  config('shipment.status.' . $batch->status) }}</span></h5>
+                                
+                                <h5><span class="badge badge-info"><?php echo config('shipment.keyStatus.' . $batch->status); ?></span></h5>
                             </td>
                             <td class="text-right">
 
