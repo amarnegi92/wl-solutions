@@ -60,14 +60,15 @@ class CustomerController extends Controller
             $rules = [
                 'customername' => 'required|max:50',
                 'mobile' => 'required|unique:users|max:10|min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
-                'customercode'=>'required|max:10',
+                'e_code'=>'required|unique:users|max:10',
                 'customerpassword' => 'required|min:6|max:10'
             ];
 
             if($request->get('user_id')){
                 $rules['customerpassword'] = 'sometimes|nullable|min:6|max:10';
-                $rules['mobile'] = 'required|unique:users,id,' . $request->get('user_id')
+                $rules['mobile'] = 'required|unique:users,mobile,' . $request->get('user_id')
                         . '|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:10';
+                $rules['e_code'] = 'required|unique:users,e_code,' . $request->get('user_id') .'|max:10';
             }
 
             $validator = Validator::make($request->all(), $rules);
@@ -80,7 +81,7 @@ class CustomerController extends Controller
             $user = array(
                 'name' => $request->get('customername'),
                 'email' => $request->get('mobile'),
-                'e_code' => $request->get('customercode'),
+                'e_code' => $request->get('e_code'),
                 'mobile' => $request->get('mobile'),
                 'status' => $request->get('status') ?? config('user.status.active')
             );
@@ -110,7 +111,7 @@ class CustomerController extends Controller
                 Address::create($address);
             }
         
-        } catch (\Exception $e){
+        } catch (\Exception $ex){
             Log::error('Error in Method ' .__METHOD__ .'. Error: ' .$ex->getMessage() .'\n');
         }
 

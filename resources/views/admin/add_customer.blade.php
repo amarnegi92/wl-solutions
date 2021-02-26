@@ -28,8 +28,8 @@
                                     <div class="invalid-feedback">Please enter customer name.</div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="customercode">Customer code</label>
-                                    <input type="text" class="form-control" name="customercode" placeholder="Customer Code" required value="<?= $user['e_code'] ?? old('customercode'); ?>"> 
+                                    <label for="e_code">Customer code</label>
+                                    <input type="text" class="form-control" name="e_code" placeholder="Customer Code" required value="<?= $user['e_code'] ?? old('e_code'); ?>"> 
                                     <small class="form-text text-muted">Enter a valid customer code.</small>
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter customer code.</div>
