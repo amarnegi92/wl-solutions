@@ -2,6 +2,7 @@
 @section('content')
 <!-- Setting Popup Card-->
 <!-- Header Area-->
+
 <div class="header-area" id="headerArea">
     <div class="container">
         <!-- Header Content-->
@@ -32,77 +33,57 @@
             <h6>List Of Orderes</h6>
         </div>
     </div>
-    <div class="container">
-        <!-- Timeline Content-->
-        <div class="card timeline-card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <div class="timeline-text mb-2"><span class="badge mb-2 rounded-pill">21/1/2020 </span>
-                        <h6>Order No. : 3545</h6>
-                    </div>
-                    <div class="timeline-icon mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                    </div>
-                </div>
-                <p class="mb-2">Text description one is ready and there are more space to wirte the description</p>
-                <div class="timeline-tags"><span class="badge bg-light text-dark">Arrived To Erbil</span></div>
-            </div>
-        </div>
-        <!-- Timeline Content-->
-        <div class="card timeline-card bg-warning">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <div class="timeline-text mb-2"><span class="badge mb-2 rounded-pill">21/1/2020</span>
-                        <h6>Order No. : 5412</h6>
-                    </div>
-                    <div class="timeline-icon mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f8e71c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="12"></line>
-                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                        </svg>
-                    </div>
-                </div>
-                <p class="mb-2">Website design and development.</p>
-                <div class="timeline-tags"><span class="badge bg-light text-dark">In Transet</span></div>
-            </div>
-        </div>
+    <?php 
+// dd($all_arrived);
+    // "id" => 1
+    // "order_number" => "asdas"
+    // "conf_date" => "2021-02-25"
+    // "customer_code" => "1"
+    // "status" => 0
+    // "description" => "adsdasdasd"
+    // "created_at" => "2021-02-24T07:27:30.000000Z"
+    // "updated_at" => "2021-02-26T09:45:08.000000Z"
 
-        <!-- Timeline Content-->
-        <div class="card timeline-card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <div class="timeline-text mb-2"><span class="badge mb-2 rounded-pill">21/1/2020 </span>
-                        <h6>Order No. : 3545</h6>
+   
+    
+?>
+    <div class="container">
+    @if(isset($all_arrived) && is_array($all_arrived))
+        @foreach($all_arrived as $arrived)
+
+        @php 
+        if($arrived['status'] == '0'){
+            $class = 'bg-info';
+        } elseif($arrived['status'] == '1'){
+            $class = 'bg-info';
+        } elseif ($arrived['status'] == '2') {
+            $class = 'bg-danger';
+        } elseif ($arrived['status'] == '3') {
+            $class = 'bg-info';
+        }
+        @endphp
+            <!-- Timeline Content-->
+            <div class="card timeline-card {!! $class !!}">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="timeline-text mb-2"><span class="badge mb-2 rounded-pill">{!! $arrived['conf_date'] !!} </span>
+                            <h6>Order No. : {!! $arrived['order_number'] !!}</h6>
+                        </div>
+                        <div class="timeline-icon mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
                     </div>
-                    <div class="timeline-icon mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                    </div>
+                    <p class="mb-2">{!! $class !!}  aa {!! $arrived['status'] !!}</p>
+                    <div class="timeline-tags"><span class="badge bg-light text-dark"><?php echo config('shipment.ARRIVED.' . $arrived['status']); ?></span></div>
                 </div>
-                <p class="mb-2">Text description one is ready and there are more space to wirte the description</p>
-                <div class="timeline-tags"><span class="badge bg-light text-dark">Arrived To Erbil</span></div>
             </div>
-        </div>
-        <!-- Timeline Content-->
-        <div class="card timeline-card bg-warning">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <div class="timeline-text mb-2"><span class="badge mb-2 rounded-pill">21/1/2020</span>
-                        <h6>Order No. : 5412</h6>
-                    </div>
-                    <div class="timeline-icon mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f8e71c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="12"></line>
-                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                        </svg>
-                    </div>
-                </div>
-                <p class="mb-2">Website design and development.</p>
-                <div class="timeline-tags"><span class="badge bg-light text-dark">In Transet</span></div>
-            </div>
-        </div>
-        <!-- Timeline Content-->
+            <!-- Timeline Content-->
+        @endforeach
+    @endif
+   
+        
+        
 
     </div>
 </div>
