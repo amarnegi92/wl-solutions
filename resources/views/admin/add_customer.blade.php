@@ -22,14 +22,14 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="customername">Customer Name</label>
-                                    <input type="text" class="form-control" name="customername" placeholder="Customer Name" required value = "<?php echo isset($user['name']) ?  $user['name'] :''?>">
+                                    <input type="text" class="form-control" name="customername" placeholder="Customer Name" required value = "<?= $user['name'] ??  old('customername'); ?>">
                                     <small class="form-text text-muted">Enter a valid customer name.</small>
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter customer name.</div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="customercode">Customer code</label>
-                                    <input type="text" class="form-control" name="customercode" placeholder="Customer Code" required value="<?php echo isset($user['e_code']) ?  $user['e_code'] :''?>"> 
+                                    <input type="text" class="form-control" name="customercode" placeholder="Customer Code" required value="<?= $user['e_code'] ?? old('customercode'); ?>"> 
                                     <small class="form-text text-muted">Enter a valid customer code.</small>
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter customer code.</div>
@@ -38,14 +38,14 @@
                             <div class="form-group">
                                 <label for="address">Address</label>
                                 <input type="text" class="form-control" name="address" placeholder="Customer address" required
-                                value="<?php echo isset($user['address']) ?  $user['address'] :''?>">
+                                value="<?= $user['address'] ??  old('address'); ?>">
                                 <div class="valid-feedback">Looks good!</div>
                                 <div class="invalid-feedback">Please enter adress.</div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="mobile">Mobile Phone</label>
-                                    <input type="number" class="form-control" name="customermobile" placeholder="Customer Phone" required value="<?php echo isset($user['mobile']) ?  $user['mobile'] :''?>">
+                                    <input type="number" class="form-control" name="mobile" placeholder="Customer Phone" required value="<?php echo isset($user['mobile']) ?  $user['mobile'] : old('mobile') ?>">
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter customer Phone.</div>
                                 </div>
@@ -60,8 +60,8 @@
                                     <div class="form-group col-md-6">
                                         <label for="status">Status</label>
                                         <select class="form-control" name="status" id="status">
-                                        <option {{ $user['status'] == config('user.status.active') ? 'selected': null }} value="{{ config('user.status.active') }}">Active</option>
-                                        <option {{ $user['status'] == config('user.status.inactive') ? 'selected': null }} value="{{ config('user.status.inactive') }}">Inactive</option>
+                                        <option {{ ( $user['status'] ?? old('status') ) == config('user.status.active') ? 'selected': null }} value="{{ config('user.status.active') }}">Active</option>
+                                        <option {{ ( $user['status'] ?? old('status') ) == config('user.status.inactive') ? 'selected': null }} value="{{ config('user.status.inactive') }}">Inactive</option>
                                         </select>
                                     </div>
                                 @endif

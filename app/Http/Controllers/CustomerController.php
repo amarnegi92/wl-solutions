@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use App\Models\Address;
 use Illuminate\Support\Facades\Hash;
-
-
+use Validator;
 
 class CustomerController extends Controller
 {
@@ -49,7 +48,7 @@ class CustomerController extends Controller
 
 
         } catch (\Exception $ex){
-            Log::error('Error in Customer->index() '. $ex->getMessage(). '\n');
+            Log::error('Error in Method ' .__METHOD__ .'. Error: ' .$ex->getMessage() .'\n');
             die($ex->getMessage());
         }
         return view('admin.customers',array('users' => $view_data));
@@ -58,38 +57,42 @@ class CustomerController extends Controller
 
     public function add(Request $request){
         try{
-
             $rules = [
-                'customername' => 'required',
-                'customermobile' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-                'customercode'=>'required',
-                'customerpassword' => 'required'
+                'customername' => 'required|max:50',
+                'mobile' => 'required|unique:users|max:10|min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
+                'customercode'=>'required|max:10',
+                'customerpassword' => 'required|min:6|max:10'
             ];
+
             if($request->get('user_id')){
-                unset($rules['customerpassword']);
+                $rules['customerpassword'] = 'sometimes|nullable|min:6|max:10';
+                $rules['mobile'] = 'required|unique:users,id,' . $request->get('user_id')
+                        . '|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:10';
             }
 
-            $this->validate($request, $rules);
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                return  back()->withErrors($validator)
+                        ->withInput();
+            }
 
             $user = array(
                 'name' => $request->get('customername'),
-                'email' => $request->get('customermobile'),
+                'email' => $request->get('mobile'),
                 'e_code' => $request->get('customercode'),
-                'password' => empty($request->get('customerpassword')) ? $request->get('customerpassword') :
-                    Hash::make($request->get('customerpassword')),
-                'mobile' => $request->get('customermobile'),
+                'mobile' => $request->get('mobile'),
                 'status' => $request->get('status') ?? config('user.status.active')
             );
 
-            if(!$request->get('customerpassword')){
-                unset($user['password']);
+            if (!empty($request->get('customerpassword'))) {
+                $user['password'] = Hash::make($request->get('customerpassword'));
             }
 
             //  Store data in database
             $user_id = $request->get('user_id') ? User::whereId($request->get('user_id'))->update($user) 
                 :  User::create($user);
-            
-    
+
             if(isset($user_id->id) && !empty($user_id->id)){
                 $address = array(
                     'user_id' => $user_id->id,
@@ -108,9 +111,9 @@ class CustomerController extends Controller
             }
         
         } catch (\Exception $e){
-            Log::error('Error in Customer->add'.$e->getMessage() .'\n');
-            // dd($e->getMessage() );
+            Log::error('Error in Method ' .__METHOD__ .'. Error: ' .$ex->getMessage() .'\n');
         }
+
         return redirect('admin/customers');
     }
 
@@ -126,7 +129,7 @@ class CustomerController extends Controller
                 $userData['address'] = $address[0];
             }
         } catch (\Exception $ex){
-            Log::error('Error in Customer->getEdit() '. $ex->getMessage(). '\n');
+            Log::error('Error in Method ' .__METHOD__ .'. Error: ' .$ex->getMessage() .'\n');
         }
         return view('admin.add_customer',array('user' => $userData));
     }
