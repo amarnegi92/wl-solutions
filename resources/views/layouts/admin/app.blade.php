@@ -101,5 +101,6 @@
         <script src="{{ asset('js/admin/DataTables/datatables.min.js') }}"></script>
         <script src="{{ asset('js/admin/initiate-datatables.js') }}"></script>
         <script src="{{ asset('js/admin/script.js') }}"></script>
+        @stack('custom-scripts')
     </body>
 </html>

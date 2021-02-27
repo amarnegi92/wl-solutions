@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\Arrived;
 use App\Models\Shipment;
 use Illuminate\Support\Facades\Hash;
-
+use Validator;
 
 
 class ShippingController extends Controller
@@ -64,17 +64,37 @@ class ShippingController extends Controller
     {
         try {
             $package = array(
-                'order_number' => $request->get('ordernumber'),
-                'conf_date' => $request->get('confdate'),
-                'customer_code' => $request->get('customercode'),
-                'status' => $request->get('state'),
-                'description' => $request->get('desc')
+                'order_number' => $request->get('order_number'),
+                'conf_date' => $request->get('conf_date'),
+                'customer_code' => $request->get('customer_code'),
+                'status' => $request->get('status'),
+                'description' => $request->get('description')
             );
-            $arrive_id = $request->get('package_id') ? Arrived::whereId($request->get('package_id'))->update($package) 
+            
+            $rules = [
+                'order_number' => 'required|unique:arrived',
+                'conf_date' => 'required',
+                'customer_code' => 'required|exists:users,e_code',
+                'status' => 'required',
+            ];
+            
+            $package_id = $request->get('package_id');
+            if ($package_id) {
+                $rules['order_number'] = 'required|unique:arrived,id,'. $package_id;
+            }
+            
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                return  back()->withErrors($validator)
+                        ->withInput();
+            }
+
+            $arrive_id = ($package_id) ? Arrived::whereId($package_id)->update($package) 
                 :  Arrived::create($package);
 
         } catch (\Exception $ex) {
-            Log::error('Error in Shipping->postAddPackage() ' . $ex->getMessage() . '\n');
+            Log::error('Error in ' .__METHOD__ .' Error is: '. $ex->getMessage() . '\n');
         }
 
         return redirect('admin/arrived');
@@ -120,12 +140,25 @@ class ShippingController extends Controller
     * -- function to add/manage shippment
     */
     public function addShipment(Request $request){
-        // try{
                 
             $package_ids = $request->get('packageId');
 
             $transportBy = config('shipment.transport');
             $shipmentStatus = config('shipment.status');
+            
+            $rules = [
+                'batchtext' => 'required',
+                'date' => 'required',
+                'optionsRadios' => 'required',
+                'status' => 'required',
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                return  back()->withErrors($validator)
+                        ->withInput();
+            }
 
             if( isset($package_ids) && is_array($package_ids) ){
                 foreach ($package_ids as $p_id) {
@@ -151,28 +184,6 @@ class ShippingController extends Controller
                     
                 }
             }
-        //     'batch_number',
-        // 'order_number',
-        // 'arrived_id',
-        // 'date',
-        // 'ship_type',
-        // 'status',
-        // 'description'
-
-// "batchtext" => "batch1"
-//   "desc" => "11111aditya"
-//   "date" => "2021-02-25"
-//   "optionsRadios" => "option1"
-//   "status" => "1"
-//   "packageId" => array:2 
-//     0 => "1"
-//     1 => "2"
-
-
-        // } catch (\Exception $ex) {
-        //     Log::error('Error in Shipping->addShipment() '. $ex->getMessage(). '\n');
-        //     dd($ex->getMessage());
-        // }
 
         return redirect('admin/arrived');
     }

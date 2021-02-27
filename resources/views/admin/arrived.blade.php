@@ -9,7 +9,7 @@
                     <a href="add-package" class="btn btn-sm btn-outline-primary float-right" style="  margin-left: 10px;"><i class="fas fa-plus"></i> Add Package</a>
                     <i> </i>
 
-                    <a href="roles.html" class="btn btn-sm btn-outline-success float-right " data-toggle="modal" data-target="#exampleModal"><i class="fas fa-box-open"></i> Ship selected</a>
+                    <a id="shipSelectedBtn" href="roles.html" class="btn btn-sm btn-outline-success float-right disabled" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-box-open"></i> Ship selected</a>
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -20,7 +20,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body text-left">
-                                    <form accept-charset="utf-8">
+                                   
                                         <div class="form-group">
                                             <label for="text">Batch number</label>
                                             <input type="text" name="batchtext" placeholder="Batch Number" required class="form-control">
@@ -61,7 +61,7 @@
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary"> Add </button>
                                         </div>
-                                    </form>
+                                    
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -90,7 +90,7 @@
                             <?php
                             foreach ($all_package as $package) { ?>
                                 <tr>
-                                    <td><label class="checkbox-inline mx-sm-3 mb-1">
+                                    <td class="pkg-chkbox"><label class="checkbox-inline mx-sm-3 mb-1">
                                             <input id="inlineCheckbox{!! $package['id'] !!}" name = packageId[] type="checkbox" value="{!! $package['id'] !!}" <?php echo ($package['status'] == 0 ? 'disabled' : ''); ?> >
                                         </label></td>
                                     <td>{!! $package['order_number'] !!}</td>
@@ -134,3 +134,13 @@
     </div>
 </form>
 @endsection
+@push('custom-scripts')
+<script>
+    $(function () {
+        $(document.body).on('change', 'input:checkbox', function () {
+            ($('.pkg-chkbox input:checkbox:checked').length ) ?
+                $('#shipSelectedBtn').removeClass('disabled') :  $('#shipSelectedBtn').addClass('disabled');
+        });
+    });
+</script>
+@endpush

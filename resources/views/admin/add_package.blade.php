@@ -19,19 +19,19 @@
                     <div class="card">
                         <div class="card-header">Arrived shipments</div>
                         <div class="card-body">
-                            <h5 class="card-title">Add a new record</h5>
+                            <h5 class="card-title">{{ request()->route('id') ? 'Edit' : 'Add a new'  }}  record</h5>
                             <form class="needs-validation" novalidate accept-charset="utf-8">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="ordernumber">Order Number</label>
-                                        <input type="text" class="form-control" name="ordernumber" placeholder="Order Number" required value = "<?php echo isset($package['order_number']) ?  $package['order_number'] :''?>" >
+                                        <label for="order_number">Order Number</label>
+                                        <input type="text" class="form-control" name="order_number" placeholder="Order Number" required value = "<?= $package['order_number'] ??  old('order_number'); ?>" >
                                         <small class="form-text text-muted">Enter a valid order number.</small>
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please enter a order number.</div>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="confdate">Confermation Date</label>
-                                        <input type="date" class="form-control" name="confdate" placeholder="Confermation Date" required value = "<?php echo isset($package['conf_date']) ?  $package['conf_date'] :''?>">
+                                        <label for="conf_date">Confermation Date</label>
+                                        <input type="date" class="form-control" name="conf_date" placeholder="Confermation Date" required value = "<?= $package['conf_date'] ?? old('conf_date'); ?>">
                                         <small class="form-text text-muted">please add a valid confermation date.</small>
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please enter confermation date.</div>
@@ -39,20 +39,20 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="desc">Description</label>
-                                    <input type="text" class="form-control" name="desc" placeholder="Description text" required value = "<?php echo isset($package['description']) ?  $package['description'] :''?>">
+                                    <input type="text" class="form-control" name="description" placeholder="Description text" required value = "<?= $package['description'] ?? old('description'); ?>">
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter description text.</div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="city">Customer Code</label>
-                                        <input type="text" class="form-control" name="customercode" placeholder="Customer code" required value = "<?php echo isset($package['customer_code']) ?  $package['customer_code'] :''?>">
+                                        <input type="text" class="form-control" name="customer_code" placeholder="Customer code" required value = "<?= $package['customer_code'] ?? old('customer_code'); ?>">
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please enter customer code.</div>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="state">Status</label>
-                                        <select name="state" class="form-control" required>
+                                        <label for="status">Status</label>
+                                        <select name="status" class="form-control" required>
                                             <option value="" selected>Choose...</option>
                                             <option value="1" <?php echo isset($package['status']) && $package['status'] == 1 ?  'selected' :''?> >Confirmed</option>
                                             <option value="2" <?php echo isset($package['status']) && $package['status'] == 2 ?  'selected' :''?>  >Partially purchased</option>
@@ -65,7 +65,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Add package</button>
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> {{ request()->route('id') ? 'Save' : 'Add'  }} package</button>
                             </form>
                         </div>
                     </div>
