@@ -74,7 +74,7 @@
                             </svg>
                         </div>
                     </div>
-                    <p class="mb-2">{!! $class !!}  aa {!! $arrived['status'] !!}</p>
+                    <p class="mb-2">{!! $arrived['description'] !!}</p>
                     <div class="timeline-tags"><span class="badge bg-light text-dark"><?php echo config('shipment.ARRIVED.' . $arrived['status']); ?></span></div>
                 </div>
             </div>
