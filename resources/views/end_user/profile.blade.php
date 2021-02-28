@@ -4,7 +4,7 @@
 <!-- Setting Popup Card-->
 <!-- Header Area-->
 <div class="header-area" id="headerArea">
-    <div class="container">
+    <div class="container">       
         <!-- Header Content-->
         <div class="header-content position-relative d-flex align-items-center justify-content-between">
             <!-- Back Button-->
@@ -33,12 +33,13 @@
             <div class="card-body px-5 text-center"><img class="mb-4" src="img/core-img/logo.png" alt="">
                 <h4>{{ Auth::user()->name }}</h4>
                 <p class="mb-4">{{ Auth::user()->e_code }}</p><a class="btn btn-creative btn-info" href="#">Change Password</a>
-                <p class="mb-4"></p>
+                <p class="mb-4"></p>              
+                
                 @guest
                 @else
                 <a class="btn btn-creative btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                    {{ __('Log Out') }}
+                    {{ __('profile.log_out') }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf

@@ -92,3 +92,6 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function
 // Route::get('/admin/edit-customer', [App\Http\Controllers\CustomerController::class, 'getDelet'])->name('customer.delete');
 
 });
+
+Route::get('lang/{lang}', [App\Http\Controllers\LanguageController::class, 'switchLang'])->name('lang.switch');
+

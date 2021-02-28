@@ -32,7 +32,21 @@
    
 </head>
 <body>
-
+    <div class="float-right position-fixed" style="z-index: 9999">
+        <button class="btn btn-secondary disabled" type="button" >
+            {{ Config::get('languages')[App::getLocale()] }}
+        </button>
+        @foreach (Config::get('languages') as $lang => $language)
+           @if ($lang != App::getLocale())
+           <button class="btn btn-secondary" type="button" >
+               <a href="{{ route('lang.switch', $lang) }}">{{$language}}</a>
+           </button>
+           @endif
+        @endforeach    
+    </div>
+    
+  
+                
     @yield('content')
  <!-- Just include for Normal Users --> 
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
