@@ -45,7 +45,7 @@
     // "updated_at" => "2021-02-26T09:45:08.000000Z"
 
    
-    
+    $class = null;
 ?>
     <div class="container">
     @if(isset($all_arrived) && is_array($all_arrived))
@@ -59,6 +59,8 @@
         } elseif ($arrived['status'] == '2') {
             $class = 'bg-danger';
         } elseif ($arrived['status'] == '3') {
+            $class = 'bg-info';
+        } elseif ($arrived['status'] == '4') {
             $class = 'bg-info';
         }
         @endphp

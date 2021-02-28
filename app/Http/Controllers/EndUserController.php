@@ -82,7 +82,8 @@ class EndUserController extends Controller
     function arrived() {
         try{
             $arrived = array();
-            $arrived = Arrived::whereCustomerCode(Auth::user()->e_code)->get();
+            $arrived = Arrived::whereCustomerCode(Auth::user()->e_code)
+                    ->whereNotIn('status',[ config('package.keyState.shipped')])->get();
             if(count($arrived)){
                 $arrived = $arrived->toArray();
             }
