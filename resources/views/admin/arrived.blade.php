@@ -98,15 +98,9 @@
                                     <td>{!! $package['conf_date'] !!}</td>
                                     <td>{!! $package['description'] !!}</td>
                                     <td>
-                                        <?php if($package['status'] == 0){ ?>
-                                            <h5><span class="badge badge-info">Arrived</span></h5>
-                                        <?php } elseif ($package['status'] == 1) { ?>
-                                            <h5><span class="badge badge-primary">Confirmed</span></h5>
-                                        <?php }elseif ($package['status'] == 2) { ?>
-                                            <h5><span class="badge badge-danger">Partially purchased</span></h5>
-                                        <?php }elseif ($package['status'] == 3) { ?>
-                                            <h5><span class="badge badge-success">Fully purchased</span></h5>
-                                        <?php } ?>
+                                 
+                                        <h5><span class="badge {{ config('package.badge_color.'. $package['status']) }}">{{ ucwords(config('package.state.'. $package['status'])) }}</span></h5>
+                                 
                                         <!-- <h5><span class="badge badge-danger">Canceled</span></h5> -->
                                         <!-- <h5><span class="badge badge-success">delivered</span></h5> -->
                                         <!-- <h5><span class="badge badge-info">Arrived</span></h5> -->
