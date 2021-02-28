@@ -3,6 +3,9 @@
     <div class="wrapper">
         <div class="auth-content">
             <div class="card">
+                    @if (session()->has('error.msg'))
+                        <span class="text-center alert alert-danger">{{ session()->get('error.msg')  }}</span>
+                    @endif
                 <div class="card-body text-center">
                     <div class="mb-4">
                         <img class="brand" src="{{ asset('img/admin/logo.png') }}" alt="bootstraper logo" style="height:80px;">

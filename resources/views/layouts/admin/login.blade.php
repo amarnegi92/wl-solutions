@@ -33,12 +33,14 @@
     <link rel="manifest" href="manifest.json">
 
 </head>
-<body>    
+<body>
+    @if($errors->any())
+        <h4>{{$errors->first()}}</h4>
+    @endif
     @yield('content')
     <script src="{{asset('js/admin/jquery3/jquery.min.js')}}"></script>
     <script src="{{asset('js/admin/bootstrap4/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('js/admin/fontawesome5/js/solid.min.js')}}"></script>
     <script src="{{asset('js/admin/fontawesome5/js/fontawesome.min.js')}}"></script>
-    <script src="{{asset('js/admin/script.js')}}"></script>
 </body>
 </html>

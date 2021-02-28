@@ -41,7 +41,7 @@ class AuthController extends Controller
             die($ex->getMessage());
         }
         
-        return Redirect::route("admin/login")->withSuccess('Oppes! You have entered invalid credentials');
+        return Redirect::back()->withError(['msg' => 'Invalid email id or password']);
     }
     
     public function dashboard()
@@ -50,7 +50,7 @@ class AuthController extends Controller
       if(Auth::check()){
         return view('dashboard');
       }
-       return Redirect::to("login")->withSuccess('Opps! You do not have access');
+       return Redirect::to("login")->withError(['msg' =>'Opps! You do not have access']);
     }
      
     public function logout() {

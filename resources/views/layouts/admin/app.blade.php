@@ -101,6 +101,13 @@
         <script src="{{ asset('js/admin/DataTables/datatables.min.js') }}"></script>
         <script src="{{ asset('js/admin/initiate-datatables.js') }}"></script>
         <script src="{{ asset('js/admin/script.js') }}"></script>
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
         @stack('custom-scripts')
     </body>
 </html>

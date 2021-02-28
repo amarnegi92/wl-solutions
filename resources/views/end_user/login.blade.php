@@ -18,6 +18,9 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-5">
+            @if($errors->any())
+                <span class="text-center alert alert-danger">{{$errors->first()}}</span>
+            @endif
             <div class="text-center px-4"><img class="login-intro-img" src="img/core-img/logo.png" alt=""></div>
             <!-- Register Form-->
             <div class="register-form mt-4 px-4">
