@@ -79,6 +79,7 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function
 
     Route::get('sea-transport', [App\Http\Controllers\SeaTransportController::class, 'index'])->name('admin/sea-transport');
     Route::get('air-transport', [App\Http\Controllers\SeaTransportController::class, 'indexAir'])->name('admin/air-transport');
+    Route::post('change-transport-status', [App\Http\Controllers\SeaTransportController::class, 'changeShipmentStatus'])->name('changeTransportBatchStatus');
     Route::get('delete-sea-transport/{id}', [App\Http\Controllers\SeaTransportController::class, 'deleteTransport'])->name('transport.delete');
     Route::get('delete-air-transport/{id}', [App\Http\Controllers\SeaTransportController::class, 'deleteTransport'])->name('transportair.delete');
     // Arrived route **** end ********

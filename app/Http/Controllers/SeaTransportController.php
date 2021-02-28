@@ -30,5 +30,19 @@ class SeaTransportController extends Controller
     	return redirect('admin/sea-transport');
     }
 
-    
+    public function changeShipmentStatus() {
+        $response = ['success' => false];
+        try {
+            $id = request()->get('id');
+            $order_num = request()->get('order_num');
+            $status = request()->get('status');
+            $updated = Shipment::where(['id' => $id, 'order_number' => $order_num])->update(['status' => $status]);
+            if ($updated) {
+                $response = ['success' => true];
+            }
+        } catch (\Exception $ex) {
+
+        }
+        return response()->json($response);
+    }
 }
