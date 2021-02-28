@@ -40,56 +40,37 @@
                 <!-- Invoice Table-->
                 <div class="invoice-table">
                     <div class="table-responsive">
-                        <table class="table table-bordered caption-top">
-                            <caption>List of orders</caption>
-                            <thead class="table-light">
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Date</th>
-                                    <th>Desc.</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>3545</td>
-                                    <td>21/1/2020</td>
-                                    <td>Text description one</td>
-                                    <td>
-                                        <div class="alert alert-primary" role="alert">China</div>
-                                    </td>
-                                </tr>
+                        @if(count($batch))
+                            <table class="table table-bordered caption-top">
+                                <caption>List of orders</caption>
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Patch No.</th>
+                                        <th>Order No.</th>
+                                        <th>Date</th>
+                                        <th>Desc.</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                <tr>
-                                    <td>5412</td>
-                                    <td>21/1/2020</td>
-                                    <td>Website design and development</td>
-                                    <td>
-                                        <div class="alert alert-secondary" role="alert">Transet</div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>1236</td>
-                                    <td>21/1/2020</td>
-                                    <td>this is a design for zebra company</td>
-                                    <td>
-                                        <div class="alert alert-success" role="alert">Warehouse</div>
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-                                    <td>9875</td>
-                                    <td>21/1/2020</td>
-                                    <td>Website design and development</td>
-                                    <td>
-                                        <div class="alert alert-warning" role="alert">Erbil</div>
-                                    </td>
-                                </tr>
-                            </tbody>
-
-                        </table>
+                                     
+                                        @foreach($batch as $batchId => $batch_val)
+                                            <tr>
+                                                <td>{!! $batchId !!}</td>
+                                                <td>{!! implode('<br>',$batch_val['order_number']) !!}</td>
+                                                <td>{!! $batch_val['date'] !!}</td>
+                                                <td>{!! $batch_val['description'] !!}</td>
+                                                <td>
+                                                    <div class="alert alert-primary" role="alert"><?php echo config('shipment.keyStatus.' . $batch_val['status']); ?></div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <p>No Record Found</p> 
+                        @endif
                     </div>
                 </div>
                 <p class="mb-0">Notice:</p>
