@@ -32,7 +32,7 @@ class ShippingController extends Controller
     {
         $all_package = array();
         try {
-            $all_package = Arrived::where('status', '!=', -1)->get();
+            $all_package = Arrived::where('status', '!=', config('package.keyState.deleted'))->get();
             if (isset($all_package) && count($all_package)) {
                 $all_package = $all_package->toArray();
             }
@@ -65,6 +65,7 @@ class ShippingController extends Controller
         try {
             $package = array(
                 'order_number' => $request->get('order_number'),
+                'sanitized_order_number' => preg_replace('/[^a-zA-Z0-9_.]/', '_', $request->get('order_number')),
                 'conf_date' => $request->get('conf_date'),
                 'customer_code' => $request->get('customer_code'),
                 'status' => $request->get('status'),
@@ -125,7 +126,7 @@ class ShippingController extends Controller
         try {
             $userData = Arrived::whereId($id)->first();
             if($userData) {
-                $userData->status = -1;//config('shipping.status.archive');
+                $userData->status = config('package.keyState.deleted');//config('shipping.status.archive');
                 $userData->save();
             }
         } catch(\Exception $ex) {
@@ -178,7 +179,7 @@ class ShippingController extends Controller
                         );
                         
                         Shipment::create($batch);
-                        $getPackage->status = 0;
+                        $getPackage->status = config('package.keyState.shipped');
                         $getPackage->save();
                     }
                     

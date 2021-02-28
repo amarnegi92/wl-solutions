@@ -1,5 +1,10 @@
 @extends('layouts.admin.app')
 @section('content')
+<style>
+    .bg-silver {
+        background-color: silver;
+    }
+</style>
 <form  method="post" action="{{ route('shipment.add') }}">
     @csrf
     <div class="content">
@@ -89,7 +94,7 @@
                         <tbody>
                             <?php
                             foreach ($all_package as $package) { ?>
-                                <tr>
+                            <tr  class="{{ ($package['status'] == config('package.keyState.shipped')) ? 'bg-silver': null }}" >
                                     <td class="pkg-chkbox"><label class="checkbox-inline mx-sm-3 mb-1">
                                             <input id="inlineCheckbox{!! $package['id'] !!}" name = packageId[] type="checkbox" value="{!! $package['id'] !!}" <?php echo ($package['status'] == 0 ? 'disabled' : ''); ?> >
                                         </label></td>

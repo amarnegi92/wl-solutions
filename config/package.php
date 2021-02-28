@@ -1,5 +1,6 @@
 <?php
 $state =  [
+        -1 => 'deleted',
         0 => 'shipped',
         1 => 'confirmed',
         2 => 'partially purchased',

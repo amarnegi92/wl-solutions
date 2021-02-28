@@ -20,13 +20,16 @@ class SeaTransportController extends Controller
         return view('admin.air_transport', compact('sea_transport_batches'));
     }
 
-    public function deleteTransport($id){
+    public function deleteTransport($type, $id, $sanitized_order_number){
     	$getTranspoart = Shipment::whereId($id)->first();
     	if(isset($getTranspoart->arrived_id) && !empty($getTranspoart->arrived_id)){
-    		Arrived::whereId($getTranspoart->arrived_id)->update(array('status' => 5));
-    		$getTranspoart->status = 3;
-    		$getTranspoart->save();
+    		Arrived::where(['sanitized_order_number' => $sanitized_order_number])
+                        ->update(array('status' => config('package.keyState.arrived')));
+    		$getTranspoart->delete();
     	}
+        if ($type == 'air') {
+            return redirect('admin/air-transport');
+        }
     	return redirect('admin/sea-transport');
     }
 

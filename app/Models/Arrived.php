@@ -13,6 +13,7 @@ class Arrived extends Model
 
     protected $fillable = [
         'order_number',
+        'sanitized_order_number',
         'conf_date',
         'customer_code',
         'status',
