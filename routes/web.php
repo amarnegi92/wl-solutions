@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -84,12 +85,12 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function
     Route::get('delete-air-transport/{type}/{id}', [App\Http\Controllers\SeaTransportController::class, 'deleteTransport'])->name('transportair.delete');
     // Arrived route **** end ********
 
-
-    // Route::get('add-customer', function () { return view('admin.add_customer'); });//list
-
-// Route::post('/admin/add-customer', [App\Http\Controllers\CustomerController::class, 'add'])->name('admin/add-customer');
-// Route::get('/admin/edit-customer/{id}', [App\Http\Controllers\CustomerController::class, 'getEdit'])->name('customer.edit');
-// Route::get('/admin/edit-customer', [App\Http\Controllers\CustomerController::class, 'getDelet'])->name('customer.delete');
+    Route::get('orders', [App\Http\Controllers\OrderController::class, 'index'])->name('admin.orders');
+    Route::get('add_orders', [App\Http\Controllers\OrderController::class, 'addOrder'])->name('admin.addOrders');
+    Route::post('add_orders', [App\Http\Controllers\OrderController::class, 'postAddOrder'])->name('admin.postAddOrders');
+    Route::get('edit_order/{id}', [App\Http\Controllers\OrderController::class, 'getEditOrder'])->name('admin.editOrder');
+    Route::post('edit_order/{id}', [App\Http\Controllers\OrderController::class, 'postAddOrder'])->name('admin.postEditOrder');
+    Route::get('delete_order/{id}', [App\Http\Controllers\OrderController::class, 'deleteOrder'])->name('admin.deleteOrder');
 
 });
 
