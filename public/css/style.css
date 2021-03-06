@@ -4896,13 +4896,11 @@ div.dataTables_wrapper div.dataTables_paginate {
     .timeline-card.bg-warning .timeline-text .badge {
       background-color: #f1b10f; }
   .timeline-card.bg-info {
-    border-left-color: #1787b8 !important;
     background-color: #ffffff !important; }
     .timeline-card.bg-info .timeline-icon svg,
     .timeline-card.bg-info .timeline-icon i {
       color: #1787b8; }
-    .timeline-card.bg-info .timeline-text .badge {
-      background-color: #1787b8; }
+    
   .timeline-card.bg-dark {
     border-left-color: #061238 !important;
     background-color: #ffffff !important; }

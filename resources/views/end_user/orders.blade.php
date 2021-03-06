@@ -2,13 +2,11 @@
 @section('content')
 <!-- Setting Popup Card-->
 <!-- Header Area-->
-
 <div class="header-area" id="headerArea">
     <div class="container">
         <!-- Header Content-->
         <div class="header-content position-relative d-flex align-items-center justify-content-between">
             <!-- Back Button-->
-
             <!-- Page Title-->
             <div class="page-heading">
                 <h6 class="mb-0">Orders</h6>
@@ -43,8 +41,6 @@
     // "description" => "adsdasdasd"
     // "created_at" => "2021-02-24T07:27:30.000000Z"
     // "updated_at" => "2021-02-26T09:45:08.000000Z"
-
-
     $class = null;
     ?>
     <div class="container">
@@ -67,7 +63,7 @@
         <div class="card timeline-card {!! $class !!}">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <div class="timeline-text mb-2"><span class="badge mb-2 rounded-pill">{!! $order['conf_date'] !!} </span>
+                    <div class="timeline-text mb-2"><span class="badge mb-2 rounded-pill"><?php echo date('d/m/Y', strtotime($order['conf_date'])); ?></span>
                         <h6>Order No. : {!! $order['order_number'] !!}</h6>
                     </div>
                     <div class="timeline-icon mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -76,16 +72,11 @@
                     </div>
                 </div>
                 <p class="mb-2">{!! $order['description'] !!}</p>
-                <div class="timeline-tags"><span class="badge bg-light text-dark"><?php echo config('shipment.order.' . $order['status']); ?></span></div>
             </div>
         </div>
         <!-- Timeline Content-->
         @endforeach
         @endif
-
-
-
-
     </div>
 </div>
 @include('end_user.footer')

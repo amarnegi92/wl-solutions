@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth', 'is_customer']], function() {
     Route::get('sea-transport', [App\Http\Controllers\EndUserController::class, 'sea_transport'])->name('sea-transport');
     Route::get('air-transport', [App\Http\Controllers\EndUserController::class, 'air_transport'])->name('air-transport');
     Route::get('arrived', [App\Http\Controllers\EndUserController::class, 'arrived'])->name('arrived');    
-    Route::get('orders', [App\Http\Controllers\EndUserController::class, 'orders'])->name('arrived');    
+    Route::get('orders', [App\Http\Controllers\EndUserController::class, 'orders'])->name('orders');    
 });
 
 

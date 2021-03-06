@@ -36,7 +36,7 @@
                             <td>{{ $batch->batch_number }}</td>
                             <td>{{ $batch->weight }}</td>
                             <td>{{ $batch->eta }}</td>
-                            <td>{{ config('shipment.keyStatus.' . $batch->status) }}</td>
+                            <td>{{ config('shipment.keyStatus.' . $batch->ship_status) }}</td>
 
                             <td class="text-right">
                                 <a href="{{ route('admin.transport.edit', ['id' => $batch->id] ) }}" class="btn btn-outline-info btn-rounded row-action-edit"><i class="fas fa-pen"></i></a>

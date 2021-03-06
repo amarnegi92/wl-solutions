@@ -4,8 +4,8 @@
     <div class="container-fluid">
         <div class="page-title">
             <h3>Sea Shipments
-            <a href="{{ route('admin.transport.addSea') }}" class="btn btn-sm btn-outline-primary float-right" style="  margin-left: 10px;"><i class="fas fa-plus"></i> Add Package</a>
-                    <i> </i>
+                <a href="{{ route('admin.transport.addSea') }}" class="btn btn-sm btn-outline-primary float-right" style="  margin-left: 10px;"><i class="fas fa-plus"></i> Add Package</a>
+                <i> </i>
             </h3>
         </div>
         <div class="box box-primary">
@@ -25,28 +25,23 @@
                         </tr>
                     </thead>
                     <tbody>
-
-                    @foreach ($transport_batches as $batch)
+                        @foreach ($transport_batches as $batch)
                         <tr id={{ $batch->id }}>
-
                             <td>{{ $batch->ctn_qty }}</td>
-                             <td>{{ $batch->description }}</td>
+                            <td>{{ $batch->description }}</td>
                             <td>{{ 'customer code' }}</td>
                             <td>{{ $batch->batch_number }}</td>
                             <td>{{ $batch->volume }}</td>
                             <td>{{ $batch->eta }}</td>
                             <td>{{ $batch->container_number }}</td>
-                            <td>{{ config('shipment.keyStatus.' . $batch->status) }}</td>
-
+                            <td>{{ config('shipment.keyStatus.' . $batch->ship_status) }}</td>
                             <td class="text-right">
                                 <a href="{{ route('admin.transport.edit', ['id' => $batch->id] ) }}" class="btn btn-outline-info btn-rounded row-action-edit"><i class="fas fa-pen"></i></a>
                                 <a href="{{ route('admin.transport.delete', ['type' => 'sea', 'id' => $batch->id] ) }}" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
-                    @endforeach
-
-
+                        @endforeach
                     </tbody>
                 </table>
             </div>

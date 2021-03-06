@@ -57,15 +57,15 @@
                                 <tbody>                                     
                                         @foreach($batch as $batchId => $batch_val)
                                             <tr>
-                                                <td>{!! $batchId !!}</td>
-                                                <td>{!! implode('<br>',$batch_val['order_number']) !!}</td>
-                                                <td>{!! $batch_val['date'] !!}</td>
-                                                <td>{!! $batch_val['description'] !!}</td>
+                                                <td>{!! $batch_val->ctn_qty !!}</td>
+                                                <td>{!! $batch_val->description !!}</td>
+                                                <td>{!! $batch_val->batch_number !!}</td>
+                                                <td>{!! $batch_val->volume !!}</td>
+                                                <td>{!! $batch_val->eta !!}</td>
+                                                <td>{!! $batch_val->container_number !!}</td>
                                                 <td>
-                                                    <div class="alert alert-primary" role="alert"><?php echo config('shipment.keyStatus.' . $batch_val['status']); ?></div>
+                                                    <div class="alert alert-primary" role="alert"><?php echo config('shipment.keyStatus.' . $batch_val->status); ?></div>
                                                 </td>
-                                                <td>{!! $batch_val['description'] !!}</td>
-                                                <td>{!! $batch_val['description'] !!}</td>
                                             </tr>
                                         @endforeach
                                 </tbody>

@@ -20,7 +20,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-2">
                                         <label for="ctn_qty">CTN Qty.</label>
-                                        <input type="text" class="form-control" name="ctn_qty" placeholder="CTN Qty." required value = "<?= $transport['ctn_qty'] ??  old('ctn_qty'); ?>" >
+                                        <input type="number" class="form-control" name="ctn_qty" placeholder="CTN Qty." required value = "<?= $transport['ctn_qty'] ??  old('ctn_qty'); ?>" >
                                         <small class="form-text text-muted">Enter a valid container quantity.</small>
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please enter a container quantity.</div>
