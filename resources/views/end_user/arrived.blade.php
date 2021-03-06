@@ -54,21 +54,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <div class="alert alert-primary" role="alert"></div>
-                                    </td>
-                                </tr>
+                                @if (count($all_arrived))
+                                    @foreach($all_arrived as $arrive)
+                                    <tr>
+                                        <td>{{ $arrive->ctn_qty }}</td>
+                                        <td>{{ $arrive->received_date }}</td>
+                                        <td>{{ $arrive->description }}</td>
+                                        <td>{{ $arrive->batch_number }}</td>
+                                        <td>{{ $arrive->weight ?? 'N/A' }}</td>
+                                        <td>{{ $arrive->eta }}</td>
+                                        <td>{{ $arrive->container_number ?? 'N/A' }}</td>
+                                        <td>
+                                            <div class="alert alert-primary" role="alert">{{ config('shipment.keyStatus.'. $arrive->ship_status ) }}</div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                @else 
+                                    <p>No Record Found</p>
+                                @endif 
                             </tbody>
                         </table>
-                        <p>No Record Found</p>
                     </div>
                 </div>
                 <p class="mb-0">Notice:</p>
