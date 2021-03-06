@@ -58,7 +58,7 @@
                                     @foreach($all_arrived as $arrive)
                                     <tr>
                                         <td>{{ $arrive->ctn_qty }}</td>
-                                        <td>{{ $arrive->received_date }}</td>
+                                        <td>{{ $arrive->received_date ?? 'N/A' }}</td>
                                         <td>{{ $arrive->description }}</td>
                                         <td>{{ $arrive->batch_number }}</td>
                                         <td>{{ $arrive->weight ?? 'N/A' }}</td>
