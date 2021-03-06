@@ -11,7 +11,7 @@ use Log;
 class TransportController extends Controller
 {
     public function index() {
-        $transports = Transport::get();
+        $transports = Transport::whereShipStatus(config('shipment.status.arrived'))->get();
 
         return view('admin.transports', compact('transports'));
     }
@@ -29,11 +29,11 @@ class TransportController extends Controller
     }
 
     public function addSea($transport = []) {
-         $customer_codes = User::pluck('e_code', 'id');
+         $customer_codes = User::where('user_type', config('user.customer'))->pluck('e_code', 'id');
          return view('admin.add_sea_transport', compact('transport', 'customer_codes'));
     }
     public function addAir($transport = []) {
-        $customer_codes = User::pluck('e_code', 'id');
+        $customer_codes = User::where('user_type', config('user.customer'))->pluck('e_code', 'id');
         return view('admin.add_air_transport', compact('transport', 'customer_codes'));
     }
 
