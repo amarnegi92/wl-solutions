@@ -29,12 +29,12 @@ class CustomerController extends Controller
     public function index()
     {
         $allUsers = $view_data = array();
-        try{
+        try {
             $allUsers = User::whereUserType(config('user.customer'))->get();
 
-            if(!empty($allUsers) && (count($allUsers) > 0) ){
+            if (!empty($allUsers) && (count($allUsers) > 0)) {
                 $allUsers = $allUsers->toArray();
-                foreach($allUsers as $user){
+                foreach ($allUsers as $user) {
                     $address = Address::whereUserId($user['id'])->pluck('address');
                     $view_data[$user['id']] = array(
                         'name' => $user['name'],
@@ -45,37 +45,35 @@ class CustomerController extends Controller
                     );
                 }
             }
-
-
-        } catch (\Exception $ex){
-            Log::error('Error in Method ' .__METHOD__ .'. Error: ' .$ex->getMessage() .'\n');
+        } catch (\Exception $ex) {
+            Log::error('Error in Method ' . __METHOD__ . '. Error: ' . $ex->getMessage() . '\n');
             die($ex->getMessage());
         }
-        return view('admin.customers',array('users' => $view_data));
-        
+        return view('admin.customers', array('users' => $view_data));
     }
 
-    public function add(Request $request){
-        try{
+    public function add(Request $request)
+    {
+        try {
             $rules = [
                 'customername' => 'required|max:50',
                 'mobile' => 'required|unique:users|max:10|min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
-                'e_code'=>'required|unique:users|max:10',
+                'e_code' => 'required|unique:users|max:10',
                 'customerpassword' => 'required|min:6|max:10'
             ];
 
-            if($request->get('user_id')){
+            if ($request->get('user_id')) {
                 $rules['customerpassword'] = 'sometimes|nullable|min:6|max:10';
                 $rules['mobile'] = 'required|unique:users,mobile,' . $request->get('user_id')
-                        . '|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:10';
-                $rules['e_code'] = 'required|unique:users,e_code,' . $request->get('user_id') .'|max:10';
+                    . '|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:10';
+                $rules['e_code'] = 'required|unique:users,e_code,' . $request->get('user_id') . '|max:10';
             }
 
             $validator = Validator::make($request->all(), $rules);
 
             if ($validator->fails()) {
                 return  back()->withErrors($validator)
-                        ->withInput();
+                    ->withInput();
             }
 
             $user = array(
@@ -91,17 +89,17 @@ class CustomerController extends Controller
             }
 
             //  Store data in database
-            $user_id = $request->get('user_id') ? User::whereId($request->get('user_id'))->update($user) 
+            $user_id = $request->get('user_id') ? User::whereId($request->get('user_id'))->update($user)
                 :  User::create($user);
 
-            if(isset($user_id->id) && !empty($user_id->id)){
+            if (isset($user_id->id) && !empty($user_id->id)) {
                 $address = array(
                     'user_id' => $user_id->id,
                     'address' => $request->get('address'),
                 );
             }
 
-            if ($request->get('user_id')){
+            if ($request->get('user_id')) {
                 $address = array(
                     // 'user_id' => $user_id->id,
                     'address' => $request->get('address'),
@@ -110,43 +108,43 @@ class CustomerController extends Controller
             } else {
                 Address::create($address);
             }
-        
-        } catch (\Exception $ex){
-            Log::error('Error in Method ' .__METHOD__ .'. Error: ' .$ex->getMessage() .'\n');
+        } catch (\Exception $ex) {
+            Log::error('Error in Method ' . __METHOD__ . '. Error: ' . $ex->getMessage() . '\n');
         }
 
         return redirect('admin/customers');
     }
 
-    public function getEdit($id){
-        try{
+    public function getEdit($id)
+    {
+        try {
             $userData = User::whereId($id)->first();
-            if(isset($userData) ){
+            if (isset($userData)) {
                 $userData = $userData->toArray();
             }
             $address = Address::whereUserId($id)->pluck('address');
-            if(isset($address)){
+            if (isset($address)) {
                 $address = $address->toArray();
                 $userData['address'] = $address[0];
             }
-        } catch (\Exception $ex){
-            Log::error('Error in Method ' .__METHOD__ .'. Error: ' .$ex->getMessage() .'\n');
+        } catch (\Exception $ex) {
+            Log::error('Error in Method ' . __METHOD__ . '. Error: ' . $ex->getMessage() . '\n');
         }
-        return view('admin.add_customer',array('user' => $userData));
+        return view('admin.add_customer', array('user' => $userData));
     }
 
-    public function getDelete($id) {
+    public function getDelete($id)
+    {
         try {
             $userData = User::whereId($id)->first();
-            if($userData) {
+            if ($userData) {
                 $userData->status = config('user.status.inactive');
                 $userData->save();
             }
-        } catch(\Exception $ex) {
-            Log::error('Error in Customer->getDelete() '. $ex->getMessage(). '\n');
+        } catch (\Exception $ex) {
+            Log::error('Error in Customer->getDelete() ' . $ex->getMessage() . '\n');
         }
-        
+
         return redirect()->route('customers.list');
     }
-
 }

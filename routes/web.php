@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('news', function() {return view('news');})->name('news');
+Route::get('news', [App\Http\Controllers\NewsController::class, 'users_news'])->name('news');
 Route::get('about_us', function() {return view('about_us');})->name('about_us');
 Route::get('contact_us', function() {return view('contact_us');})->name('contact_us');
 
@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth', 'is_customer']], function() {
     Route::get('sea-transport', [App\Http\Controllers\EndUserController::class, 'sea_transport'])->name('sea-transport');
     Route::get('air-transport', [App\Http\Controllers\EndUserController::class, 'air_transport'])->name('air-transport');
     Route::get('arrived', [App\Http\Controllers\EndUserController::class, 'arrived'])->name('arrived');    
+    Route::get('orders', [App\Http\Controllers\EndUserController::class, 'orders'])->name('arrived');    
 });
 
 
@@ -47,7 +48,13 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function
     // Route::get('arrived', [App\Http\Controllers\AdminController::class, 'arrived'])->name('admin/arrived');
     // Route::get('sea-transport', [App\Http\Controllers\AdminController::class, 'sea_transport'])->name('admin/sea-transport');
     // Route::get('air-transport', [App\Http\Controllers\AdminController::class, 'air_transport'])->name('admin/air-transport');
-    Route::get('news', [App\Http\Controllers\AdminController::class, 'news'])->name('admin/news');
+    Route::get('news', [App\Http\Controllers\NewsController::class, 'admin_news'])->name('admin/news');
+    Route::get('add-news', function () { return view('admin.add_news'); })->name('news.add');
+    Route::post('add-news', [App\Http\Controllers\NewsController::class, 'post_add'])->name('news.add');
+    Route::get('edit-news/{id}', [App\Http\Controllers\NewsController::class, 'get_edit'])->name('news.edit');
+    Route::post('edit-news/{id}', [App\Http\Controllers\NewsController::class, 'post_edit'])->name('news.edit');
+    Route::get('delete-news/{id}', [App\Http\Controllers\NewsController::class, 'get_delete'])->name('news.delete');
+
 
     //Customers route ***** Start ******
     Route::get('customers', [App\Http\Controllers\CustomerController::class, 'index'])->name('customers.list');

@@ -12,7 +12,7 @@
 
             <!-- Page Title-->
             <div class="page-heading">
-                <h6 class="mb-1">Invoice</h6>
+                <h6 class="mb-1">Sea Transport</h6>
             </div>
             <!-- Settings-->
 
@@ -35,26 +35,26 @@
                 <!-- Download Invoice-->
                 <!-- Invoice Info-->
                 <div class="invoice-info text-end mb-4">
-                    <h5 class="mb-1">Orders</h5>
+                    <h5 class="mb-1">Sea Transport</h5>
                 </div>
                 <!-- Invoice Table-->
                 <div class="invoice-table">
                     <div class="table-responsive">
                         @if(count($batch))
                             <table class="table table-bordered caption-top">
-                                <caption>List of orders</caption>
+                                <caption>List of Sea transport items</caption>
                                 <thead class="table-light">
                                     <tr>
-                                        <th>Patch No.</th>
-                                        <th>Order No.</th>
-                                        <th>Date</th>
-                                        <th>Desc.</th>
+                                        <th>CTN Qty.</th>
+                                        <th>Description</th>
+                                        <th>Batch No.</th>
+                                        <th>Volume</th>
+                                        <th>ETA</th>
+                                        <th>Container #</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-
-                                     
+                                <tbody>                                     
                                         @foreach($batch as $batchId => $batch_val)
                                             <tr>
                                                 <td>{!! $batchId !!}</td>
@@ -64,6 +64,8 @@
                                                 <td>
                                                     <div class="alert alert-primary" role="alert"><?php echo config('shipment.keyStatus.' . $batch_val['status']); ?></div>
                                                 </td>
+                                                <td>{!! $batch_val['description'] !!}</td>
+                                                <td>{!! $batch_val['description'] !!}</td>
                                             </tr>
                                         @endforeach
                                 </tbody>
