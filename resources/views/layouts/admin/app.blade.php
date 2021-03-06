@@ -50,10 +50,10 @@
                         <a href="/admin/arrived"><i class="fas fa-boxes"></i> Arrived</a>
                     </li>
                     <li>
-                        <a href="/admin/sea-transport"><i class="fas fa-ship"></i> Sea Transport</a>
+                        <a href="{{ route('admin.transport.sea') }}"><i class="fas fa-ship"></i> Sea Transport</a>
                     </li>
                     <li>
-                        <a href="/admin/air-transport"><i class="fas fa-plane-departure"></i> Air Transport</a>
+                        <a href="{{ route('admin.transport.air') }}"><i class="fas fa-plane-departure"></i> Air Transport</a>
                     </li>
                     <li>
                         <a href="/admin/news"><i class="fas fa-newspaper"></i> News</a>

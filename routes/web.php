@@ -43,12 +43,7 @@ Route::group(['prefix'=>'admin'], function() {
 Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function() {
  
     Route::get('dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin/dashboard');
-    // Route::get('customers', [App\Http\Controllers\AdminController::class, 'customers'])->name('admin/customers');
-    
-    // Route::get('add-package', [App\Http\Controllers\AdminController::class, 'add_package'])->name('admin/add-package');
-    // Route::get('arrived', [App\Http\Controllers\AdminController::class, 'arrived'])->name('admin/arrived');
-    // Route::get('sea-transport', [App\Http\Controllers\AdminController::class, 'sea_transport'])->name('admin/sea-transport');
-    // Route::get('air-transport', [App\Http\Controllers\AdminController::class, 'air_transport'])->name('admin/air-transport');
+  
     Route::get('news', [App\Http\Controllers\NewsController::class, 'admin_news'])->name('admin/news');
     Route::get('add-news', function () { return view('admin.add_news'); })->name('news.add');
     Route::post('add-news', [App\Http\Controllers\NewsController::class, 'post_add'])->name('news.add');
@@ -66,15 +61,7 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function
     Route::get('edit-customer/{id}', [App\Http\Controllers\CustomerController::class, 'getEdit'])->name('customer.edit');
     Route::post('edit-customer/{id}', [App\Http\Controllers\CustomerController::class, 'add'])->name('customer.editPost');
     Route::get('delete-customer/{id}', [App\Http\Controllers\CustomerController::class, 'getDelete'])->name('customer.delete');
-    //Customer Route ##### End ####
-
-    // Arrived route **** Start ********
-    /*
-    Route::get('arrived', [App\Http\Controllers\ShippingController::class, 'index'])->name('admin.arrived');
-    Route::get('add-package', [App\Http\Controllers\ShippingController::class, 'addPackage'])->name('admin.addPackage');
-    Route::post('add-package', [App\Http\Controllers\ShippingController::class, 'postAddPackage'])->name('admin.addPackage');
-    */
-
+   
     Route::get('arrived', [App\Http\Controllers\ShippingController::class, 'index'])->name('admin.arrived');
     Route::get('add-package', [App\Http\Controllers\ShippingController::class, 'addPackage'])->name('admin.addPackage');
     Route::post('add-package', [App\Http\Controllers\ShippingController::class, 'postAddPackage'])->name('admin.addPackage');
@@ -99,6 +86,17 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function
     Route::post('edit_order/{id}', [App\Http\Controllers\OrderController::class, 'postAddOrder'])->name('admin.postEditOrder');
     Route::get('delete_order/{id}', [App\Http\Controllers\OrderController::class, 'deleteOrder'])->name('admin.deleteOrder');
 
+    // Transport
+    Route::get('transport/arrived', [App\Http\Controllers\TransportController::class, 'index'])->name('admin.transport.arrived');
+    Route::get('transport/sea', [App\Http\Controllers\TransportController::class, 'indexSea'])->name('admin.transport.sea');
+    Route::get('transport/air', [App\Http\Controllers\TransportController::class, 'indexAir'])->name('admin.transport.air');
+
+    Route::get('transport/add/sea', [App\Http\Controllers\TransportController::class, 'addSea'])->name('admin.transport.addSea');
+    Route::get('transport/add/air', [App\Http\Controllers\TransportController::class, 'addAir'])->name('admin.transport.addAir');
+    Route::post('transport/add', [App\Http\Controllers\TransportController::class, 'postAddTransport'])->name('admin.transport.postAdd');
+    Route::get('transport/edit/{id}', [App\Http\Controllers\TransportController::class, 'editTransport'])->name('admin.transport.edit');
+    Route::get('transport/{type}/{id}', [App\Http\Controllers\TransportController::class, 'deleteTransport'])->name('admin.transport.delete');
+    
 });
 
 Route::get('lang/{lang}', [App\Http\Controllers\LanguageController::class, 'switchLang'])->name('lang.switch');
