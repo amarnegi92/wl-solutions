@@ -17,13 +17,21 @@ class TransportController extends Controller
     }
     
     public function indexSea() {
-        $transport_batches = Transport::whereShipType(config('shipment.transport.sea'))->get();
+        $transport_batches = Transport::whereShipType(config('shipment.transport.sea'))->get()
+                ->map(function ($data) {
+                    $data->customer_code = User::find($data->user_id)->e_code;
+                    return $data;
+                });
 
         return view('admin.new_sea_transport', compact('transport_batches'));
     }
 
     public function indexAir() {
-        $transport_batches = Transport::whereShipType(config('shipment.transport.air'))->get();
+        $transport_batches = Transport::whereShipType(config('shipment.transport.air'))->get()
+                ->map(function ($data) {
+                    $data->customer_code = User::find($data->user_id)->e_code;
+                    return $data;
+                });
 
         return view('admin.new_air_transport', compact('transport_batches'));
     }

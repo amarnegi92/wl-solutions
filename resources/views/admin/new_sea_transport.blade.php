@@ -26,10 +26,10 @@
                     </thead>
                     <tbody>
                         @foreach ($transport_batches as $batch)
-                        <tr id={{ $batch->id }}>
+                        <tr id="{{ $batch->id }}" >
                             <td>{{ $batch->ctn_qty }}</td>
                             <td>{{ $batch->description }}</td>
-                            <td>{{ 'customer code' }}</td>
+                            <td>{{ $batch->customer_code }}</td>
                             <td>{{ $batch->batch_number }}</td>
                             <td>{{ $batch->volume }}</td>
                             <td>{{ $batch->eta }}</td>

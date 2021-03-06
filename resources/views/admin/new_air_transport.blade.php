@@ -31,7 +31,7 @@
 
                             <td>{{ $batch->ctn_qty }}</td>
                             <td>{{ $batch->received_date }}</td>
-                            <td>{{ 'customer code' }}</td>
+                            <td>{{ $batch->customer_code }}</td>
                             <td>{{ $batch->description }}</td>
                             <td>{{ $batch->batch_number }}</td>
                             <td>{{ $batch->weight }}</td>
