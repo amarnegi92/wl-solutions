@@ -10,7 +10,8 @@ use Log;
 
 class TransportController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $transports = Transport::whereShipStatus(config('shipment.status.arrived'))->get();
 
         return view('admin.transports', compact('transports'));
@@ -36,16 +37,18 @@ class TransportController extends Controller
         return view('admin.new_air_transport', compact('transport_batches'));
     }
 
-    public function addSea($transport = []) {
-         $customer_codes = User::where('user_type', config('user.customer'))->pluck('e_code', 'id');
-         return view('admin.add_sea_transport', compact('transport', 'customer_codes'));
+    public function addSea($transport = [])
+    {
+        $customer_codes = User::where('user_type', config('user.customer'))->pluck('e_code', 'id');
+        return view('admin.add_sea_transport', compact('transport', 'customer_codes'));
     }
-    public function addAir($transport = []) {
+    public function addAir($transport = [])
+    {
         $customer_codes = User::where('user_type', config('user.customer'))->pluck('e_code', 'id');
         return view('admin.add_air_transport', compact('transport', 'customer_codes'));
     }
 
-     /**
+    /**
      * postAddTransport
      */
     public function postAddTransport(Request $request)
@@ -64,14 +67,14 @@ class TransportController extends Controller
                 'ship_type' => $request->get('ship_type'),
                 'ship_status' => $request->get('ship_status'),
             );
-            
+
             $rules = [
                 'ctn_qty' => 'required',
                 'batch_number' => 'required',
                 'user_id' => 'required|exists:users,id',
                 'ship_status' => 'required',
             ];
-            
+
             $addRules = [];
             if (request()->get('ship_type') == config('shipment.transport.sea')) {
                 $addRules = [
@@ -80,51 +83,51 @@ class TransportController extends Controller
                 ];
             } else {
                 $addRules = [
-                     'weight' => 'required',
-                     'received_date' => 'required',
+                    'weight' => 'required',
+                    'received_date' => 'required',
                 ];
             }
             $rules = array_merge($rules, $addRules);
 
             $transport_id = $request->get('transport_id');
-            
+
             $validator = Validator::make($request->all(), $rules);
 
             if ($validator->fails()) {
                 return  back()->withErrors($validator)
-                        ->withInput();
+                    ->withInput();
             }
 
-            $result = ($transport_id) ? Transport::whereId($transport_id)->update($transport) 
+            $result = ($transport_id) ? Transport::whereId($transport_id)->update($transport)
                 :  Transport::create($transport);
-
         } catch (\Exception $ex) {
-            Log::error('Error in ' .__METHOD__ .' Error is: '. $ex->getMessage() . '\n');
+            Log::error('Error in ' . __METHOD__ . ' Error is: ' . $ex->getMessage() . '\n');
         }
 
         return ($request->get('ship_type') == config('shipment.transport.sea')) ?
-            redirect()->route('admin.transport.sea') : 
+            redirect()->route('admin.transport.sea') :
             redirect()->route('admin.transport.air');
     }
 
-    public function editTransport($id) {
+    public function editTransport($id)
+    {
         $transport = Transport::find($id);
         if ($transport) {
-            return ($transport->ship_type == config('shipment.transport.sea')) ? 
-            $this->addSea($transport->toArray()) : $this->addAir($transport->toArray());
+            return ($transport->ship_type == config('shipment.transport.sea')) ?
+                $this->addSea($transport->toArray()) : $this->addAir($transport->toArray());
         } else {
-             abort(404);
+            abort(404);
         }
     }
 
 
 
 
-    public function deleteTransport($type, $id) {
-    	Transport::find($id)->delete();
+    public function deleteTransport($type, $id)
+    {
+        Transport::find($id)->delete();
 
-       return ($type == 'air') ?
-            redirect('admin/air-transport') : redirect('admin/sea-transport');
+        return ($type == 'air') ?
+            redirect('admin/transport/air') : redirect('admin/transport/sea');
     }
-
 }

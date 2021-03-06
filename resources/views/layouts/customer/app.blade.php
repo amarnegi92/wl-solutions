@@ -32,6 +32,8 @@
    
 </head>
 <body>
+    <?php
+    /*
     <div class="float-right position-fixed" style="z-index: 9999">
         <button class="btn btn-secondary disabled" type="button" >
             {{ Config::get('languages')[App::getLocale()] }}
@@ -44,7 +46,8 @@
            @endif
         @endforeach    
     </div>
-    
+    */
+    ?>
   
                 
     @yield('content')

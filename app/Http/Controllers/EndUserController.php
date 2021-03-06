@@ -59,8 +59,8 @@ class EndUserController extends Controller
         try {
             $arrived = array();
             $userBatch = array();
-            $arrived = Arrived::whereCustomerCode(Auth::user()->e_code)->whereStatus(0)->pluck('customer_code', 'order_number');
-            if (count($arrived)) {
+            $arrived = Transport::where('user_id', Auth::user()->id)->where('ship_status', '!=', config('shipment.status.arrived'))->whereShipType(config('shipment.transport.air'))->get();
+            /*if (count($arrived)) {
                 $arrived = $arrived->toArray();
                 $shipments = Shipment::whereIn('order_number', array_keys($arrived))->whereShipType(1)->get();
                 if (count($shipments)) {
@@ -73,12 +73,12 @@ class EndUserController extends Controller
                         $userBatch[$value['batch_number']]['status'] = $value['status'];
                     }
                 }
-            }
+            }*/
         } catch (\Exception $ex) {
             Log::error('Error in Customer->index() ' . $ex->getMessage() . '\n');
             dd($ex->getMessage());
         }
-        return view('end_user.air_transport', array('batch' => $userBatch));
+        return view('end_user.air_transport', array('batch' => $arrived));
     }
 
     /**

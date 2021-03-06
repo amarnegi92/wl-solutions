@@ -64,7 +64,7 @@
                                                 <td>{!! $batch_val->eta !!}</td>
                                                 <td>{!! $batch_val->container_number !!}</td>
                                                 <td>
-                                                    <div class="alert alert-primary" role="alert"><?php echo config('shipment.keyStatus.' . $batch_val->status); ?></div>
+                                                    <div class="alert alert-primary" role="alert"><?php echo config('shipment.keyStatus.' . $batch_val->ship_status); ?></div>
                                                 </td>
                                             </tr>
                                         @endforeach
