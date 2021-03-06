@@ -17,5 +17,10 @@ return [
         1 => 'In transet',
         2 => 'Arrived',
         3 => 'Delivered'
+    ],
+    'badges' => [
+        1 => 'badge-info',
+        2 => 'badge-info',
+        3 => 'badge-success'
     ]
 ];

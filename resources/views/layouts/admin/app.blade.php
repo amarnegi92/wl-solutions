@@ -47,7 +47,7 @@
                         <a href="{{ route('admin.orders') }}"><i class="fas fa-user-friends"></i> Orders</a>
                     </li>
                     <li>
-                        <a href="/admin/arrived"><i class="fas fa-boxes"></i> Arrived</a>
+                        <a href="{{ route('admin.transport.arrived') }}"><i class="fas fa-boxes"></i> Arrived</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.transport.sea') }}"><i class="fas fa-ship"></i> Sea Transport</a>

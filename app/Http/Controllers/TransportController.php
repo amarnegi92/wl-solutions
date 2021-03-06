@@ -14,7 +14,7 @@ class TransportController extends Controller
     {
         $transports = Transport::whereShipStatus(config('shipment.status.arrived'))->get();
 
-        return view('admin.transports', compact('transports'));
+        return view('admin.arrived', compact('transports'));
     }
     
     public function indexSea() {
