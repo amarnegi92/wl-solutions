@@ -17,8 +17,8 @@ class News extends Migration
             $table->id();
             $table->string('title');
             $table->string('content');
-            $table->integer('created_by');
-            $table->string('lang');
+            $table->integer('created_by')->nullable();
+            $table->string('lang')->nullable();
             $table->timestamps();
         });
     }

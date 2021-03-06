@@ -19,7 +19,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="title">Title</label>
-                                        <input type="text" class="form-control" name="title" placeholder="Enter Title" required value="<?= $news['name'] ??  old('title'); ?>">
+                                        <input type="text" class="form-control" name="title" placeholder="Enter Title" required value="<?= $news['title'] ??  old('title'); ?>">
                                         <small class="form-text text-muted">Enter a valid Title.</small>
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">Please enter Title.</div>
@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="content">Content</label>
-                                    <textarea type="text" class="form-control" name="content" placeholder="Enter Content" required value="<?= $news['content'] ??  old('content'); ?>"></textarea>
+                                    <textarea type="text" class="form-control" name="content" placeholder="Enter Content" required><?= $news['content'] ??  old('content'); ?></textarea>
                                     <div class="valid-feedback">Looks good!</div>
                                     <div class="invalid-feedback">Please enter Content.</div>
                                 </div>

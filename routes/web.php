@@ -53,7 +53,7 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'is_admin']], function
     Route::get('add-news', function () { return view('admin.add_news'); })->name('news.add');
     Route::post('add-news', [App\Http\Controllers\NewsController::class, 'post_add'])->name('news.add');
     Route::get('edit-news/{id}', [App\Http\Controllers\NewsController::class, 'get_edit'])->name('news.edit');
-    Route::post('edit-news/{id}', [App\Http\Controllers\NewsController::class, 'post_edit'])->name('news.edit');
+    Route::post('edit-news/{id}', [App\Http\Controllers\NewsController::class, 'post_add'])->name('news.edit');
     Route::get('delete-news/{id}', [App\Http\Controllers\NewsController::class, 'get_delete'])->name('news.delete');
 
 
