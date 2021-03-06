@@ -1,11 +1,5 @@
 @extends('layouts.admin.app')
 @section('content')
-                <?php
-                #TODO : move to helper.
-                    function sanitize($string) {
-                        return preg_replace('/[^a-zA-Z0-9_.]/', '_', $string);
-                    }
-                ?>
 <div class="content">
     <div class="container-fluid">
         <div class="page-title">
@@ -40,7 +34,7 @@
                             <td class="text-right">
                                 <img class="loading" src="{{ asset('img/loading.gif') }}" width="20" height="20" alt="loading" style="display: none;"/>
                                 <a href="javascript:void(0)" data-order_num="{{ $batch->order_number }}" data-id="{{ $batch->id }}" class="btn btn-outline-info btn-rounded row-action-edit"><i class="fas fa-pen"></i></a>
-                                <a href="{{ route('transport.delete', ['type' => 'air', 'id' => $batch->id, 'sanitized_order_number' => sanitize($batch->order_number)] ) }}" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i>
+                                <a href="{{ route('transport.delete', ['type' => 'air', 'id' => $batch->id, 'sanitized_order_number' => slug($batch->order_number)] ) }}" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i>
                                 </a>
                             </td>
                         </tr>

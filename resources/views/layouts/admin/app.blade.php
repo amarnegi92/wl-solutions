@@ -44,6 +44,9 @@
                         <a href="/admin/customers"><i class="fas fa-user-friends"></i> Customers</a>
                     </li>
                     <li>
+                        <a href="{{ route('admin.orders') }}"><i class="fas fa-user-friends"></i> Orders</a>
+                    </li>
+                    <li>
                         <a href="/admin/arrived"><i class="fas fa-boxes"></i> Arrived</a>
                     </li>
                     <li>

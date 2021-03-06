@@ -65,7 +65,7 @@ class ShippingController extends Controller
         try {
             $package = array(
                 'order_number' => $request->get('order_number'),
-                'sanitized_order_number' => preg_replace('/[^a-zA-Z0-9_.]/', '_', $request->get('order_number')),
+                'sanitized_order_number' => slug($request->get('order_number')),
                 'conf_date' => $request->get('conf_date'),
                 'customer_code' => $request->get('customer_code'),
                 'status' => $request->get('status'),
