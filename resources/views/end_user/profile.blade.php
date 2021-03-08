@@ -30,25 +30,47 @@
 <div class="page-content-wrapper py-3">
     <div class="container">
         <div class="card">
-            <div class="card-body px-5 text-center"><img class="mb-4" src="img/core-img/logo.png" alt="">
+            <div class="card-body px-5 text-center">
+                 @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
+                <img class="mb-4" src="img/core-img/logo.png" alt="">
                 <h4>{{ Auth::user()->name }}</h4>
-                <p class="mb-4">{{ Auth::user()->e_code }}</p><a class="btn btn-creative btn-info" href="#">Change Password</a>
-                <p class="mb-4"></p>              
-                
+                <p class="mb-4">{{ Auth::user()->e_code }}</p>
+                <form method="post">
+                    @csrf
+                    <p><input name="change_password" class="form-control-sm" type="text" placeholder="Enter new password" /></p>
+                    <input class="btn btn-creative btn-info" type="submit" value="Change Password">
+                </form>
+                <p class="mb-4"></p>        
+  
                 @guest
                 @else
                 <a class="btn btn-creative btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                    {{ __('profile.log_out') }}
+                    {{ __('Log out') }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
                 @endguest
-                </a>
+                
             </div>
         </div>
     </div>
 </div>
+
 @include('end_user.footer')
 @endsection

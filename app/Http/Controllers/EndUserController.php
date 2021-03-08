@@ -9,6 +9,9 @@ use App\Models\Arrived;
 use App\Models\Order;
 use App\Models\Shipment;
 use App\Models\Transport;
+use App\Models\User;
+use Validator;
+use Redirect;
 
 class EndUserController extends Controller
 {
@@ -18,6 +21,33 @@ class EndUserController extends Controller
     function profile()
     {
         return view('end_user.profile');
+    }
+    
+    /**
+     * postProfile
+     */
+    public function postProfile(Request $request) {
+        try {
+            $new_password = $request->get('change_password');
+            if (trim($new_password)) {
+                $rules = [
+                    'change_password' => 'required|min:6|max:16',
+                ];
+               
+                $validator = Validator::make($request->all(), $rules);
+                if ($validator->fails()) {
+                    return back()->withErrors($validator);
+                }
+                $new_password = bcrypt($new_password);
+                User::find(Auth::id())->update(['password' => $new_password]);
+                return redirect()->route('profile')->with('message', __('The password changed successfully'));
+            }
+        } catch (Exception $ex) {
+            
+        }
+        return redirect()->route('profile')
+            ->withErrors(array('error' => __('Nothing got affected.')));
+
     }
 
     /**
@@ -103,8 +133,9 @@ class EndUserController extends Controller
      * 
      */
     function arrived()
-    {
-        $all_arrived = Transport::where('user_id', Auth::user()->id)->whereShipStatus(config('shipment.status.arrived'))->get();
+    {   $shipmentStatus = config('shipment.status');
+        $all_arrived = Transport::where('user_id', Auth::user()->id)
+                ->whereIn('ship_status', [$shipmentStatus['arrived'], $shipmentStatus['delivered']])->get();
         return view('end_user.arrived', array('all_arrived' => $all_arrived));
     }
 }

@@ -12,7 +12,8 @@ class TransportController extends Controller
 {
     public function index()
     {
-        $transports = Transport::whereShipStatus(config('shipment.status.arrived'))->get();
+        $shipmentStatus = config('shipment.status');
+        $transports = Transport::whereIn('ship_status', [$shipmentStatus['arrived'], $shipmentStatus['delivered']])->get();
 
         return view('admin.arrived', compact('transports'));
     }
@@ -69,8 +70,8 @@ class TransportController extends Controller
             );
 
             $rules = [
-                'ctn_qty' => 'required',
-                'batch_number' => 'required',
+                'ctn_qty' => 'required|max:11',
+                'batch_number' => 'required|max:30',
                 'user_id' => 'required|exists:users,id',
                 'ship_status' => 'required',
             ];
@@ -78,12 +79,12 @@ class TransportController extends Controller
             $addRules = [];
             if (request()->get('ship_type') == config('shipment.transport.sea')) {
                 $addRules = [
-                    'volume' => 'required',
-                    'container_number' => 'required',
+                    'volume' => 'required|max:30',
+                    'container_number' => 'required|max:10',
                 ];
             } else {
                 $addRules = [
-                    'weight' => 'required',
+                    'weight' => 'required|max:30',
                     'received_date' => 'required',
                 ];
             }

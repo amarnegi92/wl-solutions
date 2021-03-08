@@ -47,7 +47,7 @@
         @endforeach    
     </div>
     */
-    ?>
+    ?>                
   
                 
     @yield('content')

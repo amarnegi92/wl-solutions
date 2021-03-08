@@ -27,6 +27,7 @@ Route::get('contact_us', function() {return view('contact_us');})->name('contact
 //End User Routes
 Route::group(['middleware' => ['auth', 'is_customer']], function() {
     Route::get('profile', [App\Http\Controllers\EndUserController::class, 'profile'])->name('profile');
+    Route::post('profile', [App\Http\Controllers\EndUserController::class, 'postProfile'])->name('postProfile');
     Route::get('sea-transport', [App\Http\Controllers\EndUserController::class, 'sea_transport'])->name('sea-transport');
     Route::get('air-transport', [App\Http\Controllers\EndUserController::class, 'air_transport'])->name('air-transport');
     Route::get('arrived', [App\Http\Controllers\EndUserController::class, 'arrived'])->name('arrived');    
