@@ -1,4 +1,5 @@
 @extends('layouts.admin.app')
+@section('title', config('app.name', 'Laravel') . ' | '. (request()->route('id') ? 'Edit' : 'Add') . ' News')
 @section('content')
 <?php //dd($news); 
 ?>

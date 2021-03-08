@@ -50,7 +50,7 @@ class NewsController extends Controller
             $news_info = array(
                 'title' => $request->get('title'),
                 'content' => $request->get('content'),
-                'created_by' => Auth::user()->id,
+                'created_by' => Auth::id(),
                 'lang' => 'en'
             );
             $news_id = $request->get('news_id') ? News::whereId($request->get('news_id'))->update($news_info)

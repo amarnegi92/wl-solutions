@@ -1,4 +1,5 @@
 @extends('layouts.admin.app')
+@section('title', config('app.name', 'Laravel') . ' | News')
 @section('content')
 <?php
 #TODO : move to helper.

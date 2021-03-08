@@ -11,5 +11,7 @@ class News extends Model
     protected $fillable = [
         'title',
         'content',
+        'created_by',
+        'lang'
     ];
 }
