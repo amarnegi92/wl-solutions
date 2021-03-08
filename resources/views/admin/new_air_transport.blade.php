@@ -13,6 +13,7 @@
                 <table width="100%" class="table table-hover" id="dataTables-example">
                     <thead>
                         <tr>
+                            <th class="d-none"></th>
                             <th>CTN Qty</th>
                             <th>Received On </th>
                             <th>Customer Code </th>
@@ -25,10 +26,9 @@
                         </tr>
                     </thead>
                     <tbody>
-
                     @foreach ($transport_batches as $batch)
                         <tr id={{ $batch->id }}>
-
+                            <td class="d-none"><?= strtotime(now()) - strtotime($batch->created_at); ?></td>
                             <td>{{ $batch->ctn_qty }}</td>
                             <td>{{ $batch->received_date }}</td>
                             <td>{{ $batch->customer_code }}</td>

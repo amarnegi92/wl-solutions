@@ -17,6 +17,7 @@
                     <table width="100%" class="table table-hover" id="dataTables-example">
                         <thead>
                             <tr>
+                                <th class="d-none"></th>
                                 <th>CTN Qty.</th>
                                 <th>Received on</th>
                                 <th>Description</th>
@@ -31,6 +32,7 @@
                             <?php
                             foreach ($transports as $package) { ?>
                                 <tr  class="">
+                                    <td><?= strtotime(now()) - strtotime($package->created_at); ?></td>
                                     <td>{!! $package->ctn_qty !!}</td>
                                     <td>{{ $package->received_date ?? 'N/A' }}</td>
                                     <td>{!! $package->description !!}</td>

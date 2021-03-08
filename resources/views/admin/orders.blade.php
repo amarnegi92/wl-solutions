@@ -18,6 +18,7 @@
                     <table width="100%" class="table table-hover" id="dataTables-example">
                         <thead>
                             <tr>
+                                <th class="d-none"></th>
                                 <th>Order #</th>
                                 <th>Customer Code</th>
                                 <th>Confirmation Date</th>
@@ -29,6 +30,7 @@
                             <?php
                             foreach ($all_order as $order) { ?>
                                 <tr  class="{{ ($order['status'] == config('order.keyState.shipped')) ? 'bg-silver': null }}" >
+                                    <td><?= strtotime(now()) - strtotime($order['created_at']); ?></td>
                                     <td>{!! $order['order_number'] !!}</td>
                                     <td>{!! $order['customer_code'] !!}</td>
                                     <td>{!! $order['conf_date'] !!}</td>
