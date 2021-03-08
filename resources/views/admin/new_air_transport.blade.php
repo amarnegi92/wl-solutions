@@ -1,4 +1,5 @@
 @extends('layouts.admin.app')
+@section('title', config('app.name', 'Laravel') . ' | Air Transport')
 @section('content')
 <div class="content">
     <div class="container-fluid">

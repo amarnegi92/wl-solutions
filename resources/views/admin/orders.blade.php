@@ -1,4 +1,5 @@
 @extends('layouts.admin.app')
+@section('title',config('app.name', 'Laravel') . ' | Orders')
 @section('content')
 <style>
     .bg-silver {
@@ -30,7 +31,7 @@
                             <?php
                             foreach ($all_order as $order) { ?>
                                 <tr  class="{{ ($order['status'] == config('order.keyState.shipped')) ? 'bg-silver': null }}" >
-                                    <td><?= strtotime(now()) - strtotime($order['created_at']); ?></td>
+                                    <td class="d-none"><?= strtotime(now()) - strtotime($order['created_at']); ?></td>
                                     <td>{!! $order['order_number'] !!}</td>
                                     <td>{!! $order['customer_code'] !!}</td>
                                     <td>{!! $order['conf_date'] !!}</td>

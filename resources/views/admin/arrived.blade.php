@@ -1,4 +1,5 @@
 @extends('layouts.admin.app')
+@section('title',config('app.name', 'Laravel') . ' | Arrived')
 @section('content')
 <style>
     .bg-silver {

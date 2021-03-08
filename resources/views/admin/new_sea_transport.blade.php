@@ -1,4 +1,5 @@
 @extends('layouts.admin.app')
+@section('title', config('app.name', 'Laravel') . ' | Sea Transport')
 @section('content')
 <div class="content">
     <div class="container-fluid">

@@ -1,4 +1,5 @@
 @extends('layouts.admin.app')
+@section('title', config('app.name', 'Laravel') . ' | '. (request()->route('id') ? 'Edit' : 'Add') . ' Air Transport')
 @section('content')
 <form  method="post" action="{{ route('admin.transport.postAdd') }}">
     @csrf
