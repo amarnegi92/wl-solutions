@@ -57,7 +57,7 @@ class CustomerController extends Controller
         try {
             $rules = [
                 'customername' => 'required|max:50',
-                'mobile' => 'required|unique:users|max:11|min:11|regex:/^([0-9\s\-\+\(\)]*)$/',
+//                'mobile' => 'required|unique:users|max:11|min:11|regex:/^([0-9\s\-\+\(\)]*)$/',
                 'e_code' => 'required|unique:users|max:10',
                 'customerpassword' => 'required|min:6|max:10'
             ];
