@@ -43,6 +43,7 @@
                             <caption>List of arrived items</caption>
                             <thead class="table-light">
                                 <tr>
+                                    <th>Shipped Via</th>
                                     <th>CTN Qty.</th>
                                     <th>Recived on</th>
                                     <th>Description</th>
@@ -57,6 +58,12 @@
                                 @if (count($all_arrived))
                                     @foreach($all_arrived as $arrive)
                                     <tr>
+                                        <td>
+                                            <h5><span class="">
+                                            {{ ucwords(config('shipment.keyTransport.' . $arrive->ship_type)) }}
+                                            </span>
+                                            </h5>
+                                        </td>
                                         <td>{{ $arrive->ctn_qty }}</td>
                                         <td>{{ $arrive->received_date ?? 'N/A' }}</td>
                                         <td>{{ $arrive->description }}</td>
