@@ -13,6 +13,10 @@ return [
         'air' => 1,
         'sea' => 2
     ],
+    'keyTransport' => [
+        1 => 'air',
+        2 => 'sea'
+    ],
     'keyStatus' => [
         1 => 'In transet',
         2 => 'Arrived',

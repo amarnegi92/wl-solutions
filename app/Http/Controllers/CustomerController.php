@@ -64,8 +64,8 @@ class CustomerController extends Controller
 
             if ($request->get('user_id')) {
                 $rules['customerpassword'] = 'sometimes|nullable|min:6|max:10';
-                $rules['mobile'] = 'required|unique:users,mobile,' . $request->get('user_id')
-                    . '|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:10';
+//                $rules['mobile'] = 'required|unique:users,mobile,' . $request->get('user_id')
+//                    . '|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:10';
                 $rules['e_code'] = 'required|unique:users,e_code,' . $request->get('user_id') . '|max:10';
             }
 

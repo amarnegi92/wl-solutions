@@ -18,7 +18,7 @@
                     <table width="100%" class="table table-hover" id="dataTables-example">
                         <thead>
                             <tr>
-                                <th class="d-none"></th>
+                                <th>Shipped Via</th>
                                 <th>CTN Qty.</th>
                                 <th>Received on</th>
                                 <th>Description</th>
@@ -26,14 +26,20 @@
                                 <th>Weight</th>
                                 <th>ETA</th>
                                 <th>Container</th>
+                                
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             foreach ($transports as $package) { ?>
-                                <tr  class="">
-                                    <td><?= strtotime(now()) - strtotime($package->created_at); ?></td>
+                                <tr>
+                                    <td>
+                                        <h5><span class="badge {{ config('shipment.badges.' . $package->ship_type) }}">
+                                        {{ ucwords(config('shipment.keyTransport.' . $package->ship_type)) }}
+                                        </span>
+                                        </h5>
+                                    </td>
                                     <td>{!! $package->ctn_qty !!}</td>
                                     <td>{{ $package->received_date ?? 'N/A' }}</td>
                                     <td>{!! $package->description !!}</td>
@@ -41,6 +47,7 @@
                                     <td>{{ $package->weight ?? 'N/A' }}</td>
                                     <td>{!! $package->eta !!}</td>
                                     <td>{!! $package->container_number !!}</td>
+                                    
                                     <td>
                                         <h5>
                                             <span class="badge {{ config('shipment.badges.' .$package->ship_status) }}">{!! config('shipment.keyStatus.' .$package->ship_status) !!}</span>
