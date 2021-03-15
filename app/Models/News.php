@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    use HasFactory;
     protected $fillable = [
         'title',
+        'ar_title',
+        'ku_title',
         'content',
+        'ar_content',
+        'ku_content',
         'created_by',
         'lang'
     ];

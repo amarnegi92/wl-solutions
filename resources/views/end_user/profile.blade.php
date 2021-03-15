@@ -51,8 +51,8 @@
                 <p class="mb-4">{{ Auth::user()->e_code }}</p>
                 <form method="post">
                     @csrf
-                    <p><input name="change_password" class="form-control-sm" type="text" placeholder="Enter new password" /></p>
-                    <input class="btn btn-creative btn-info" type="submit" value="Change Password">
+                    <p><input name="change_password" class="form-control-sm" type="text" placeholder="{{ __('Enter new password') }}" /></p>
+                    <input class="btn btn-creative btn-info" type="submit" value="{{ __('Change Password') }}">
                 </form>
                 <p class="mb-4"></p>        
   

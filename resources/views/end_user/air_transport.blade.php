@@ -12,7 +12,7 @@
 
             <!-- Page Title-->
             <div class="page-heading">
-                <h6 class="mb-1">Air Transport</h6>
+                <h6 class="mb-1">{{ __('Air Transport')}}</h6>
             </div>
             <!-- Settings-->
 
@@ -35,23 +35,23 @@
                 <!-- Download Invoice-->
                 <!-- Invoice Info-->
                 <div class="invoice-info text-end mb-4">
-                    <h5 class="mb-1">Air Transport</h5>
+                    <h5 class="mb-1">{{ __('Air Transport')}}</h5>
                 </div>
                 <!-- Invoice Table-->
                 <div class="invoice-table">
                     <div class="table-responsive">
                         @if(count($batch))
                             <table class="table table-bordered caption-top">
-                                <caption>List of air transport items</caption>
+                                <caption>{{__('List of air transport items')}}</caption>
                                 <thead class="table-light">
                                     <tr>
-                                        <th>CTN Qty.</th>
-                                        <th>Riceved On</th>
-                                        <th>Description</th>
-                                        <th>Batch No.</th>
-                                        <th>Weight</th>
-                                        <th>ETA</th>
-                                        <th>Status</th>
+                                        <th>{{__('CTN Qty.')}}</th>
+                                        <th>{{__('Recived on')}}</th>
+                                        <th>{{__('Description')}}</th>
+                                        <th>{{__('Batch No.')}}</th>
+                                        <th>{{__('Weight')}}</th>
+                                        <th>{{__('ETA')}}</th>
+                                        <th>{{__('Status')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>                                     
@@ -75,7 +75,7 @@
                         @endif
                     </div>
                 </div>
-                <p class="mb-0">Notice:</p>
+                <p class="mb-0">{{__('Notice')}}:</p>
             </div>
         </div>
     </div>

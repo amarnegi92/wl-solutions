@@ -12,7 +12,7 @@
 
             <!-- Page Title-->
             <div class="page-heading">
-                <h6 class="mb-1">Sea Transport</h6>
+                <h6 class="mb-1">{{ __('Sea Transport') }}</h6>
             </div>
             <!-- Settings-->
 
@@ -35,23 +35,23 @@
                 <!-- Download Invoice-->
                 <!-- Invoice Info-->
                 <div class="invoice-info text-end mb-4">
-                    <h5 class="mb-1">Sea Transport</h5>
+                    <h5 class="mb-1">{{ __('Sea Transport') }}</h5>
                 </div>
                 <!-- Invoice Table-->
                 <div class="invoice-table">
                     <div class="table-responsive">
                         @if(count($batch))
                             <table class="table table-bordered caption-top">
-                                <caption>List of Sea transport items</caption>
+                                <caption>{{ __('List of Sea transport items') }}</caption>
                                 <thead class="table-light">
                                     <tr>
-                                        <th>CTN Qty.</th>
-                                        <th>Description</th>
-                                        <th>Batch No.</th>
-                                        <th>Volume</th>
-                                        <th>ETA</th>
-                                        <th>Container #</th>
-                                        <th>Status</th>
+                                        <th>{{ __('CTN Qty.') }}</th>
+                                        <th>{{ __('Description')}}</th>
+                                        <th>{{ __('Batch No.')}}</th>
+                                        <th>{{ __('Volume')}}</th>
+                                        <th>{{ __('ETA')}}</th>
+                                        <th>{{ __('Container')}} #</th>
+                                        <th>{{ __('Status')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>                                     

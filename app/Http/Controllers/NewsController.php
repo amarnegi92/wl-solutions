@@ -49,7 +49,11 @@ class NewsController extends Controller
             }
             $news_info = array(
                 'title' => $request->get('title'),
+                'ar_title' => $request->get('ar_title'),
+                'ku_title' => $request->get('ku_title'),
                 'content' => $request->get('content'),
+                'ar_content' => $request->get('ar_content'),
+                'ku_content' => $request->get('ku_content'),
                 'created_by' => Auth::id(),
                 'lang' => 'en'
             );

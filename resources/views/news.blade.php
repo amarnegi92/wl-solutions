@@ -36,13 +36,19 @@
 </div>
 </div>
   @if(count($news))
+ @php 
+ $prefix = (session()->get('applocale') != 'en' || empty(session()->get('applocale')) ) ? session()->get('applocale') . '_' : '';
+ $title = $prefix."title";
+ $content = $prefix."content";
+ @endphp
   @foreach ($news as $cur_new)
   <div class="page-content-wrapper py-3">
   <div class="container">
     <div class="card offline-online-card">
       <div class="card-body text-center">
-        <h6 class="border-bottom pb-2">{{ $cur_new->title }}</h6>
-        <p>{{ $cur_new->content }}</p>
+        <h6 class="border-bottom pb-2">{{ $cur_new->{$title} }}</h6>
+        <p> 
+        {{ $cur_new->{$content} }}</p>
       </div>
     </div>
   </div>

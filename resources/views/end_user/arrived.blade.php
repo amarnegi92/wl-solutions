@@ -12,7 +12,7 @@
 
             <!-- Page Title-->
             <div class="page-heading">
-                <h6 class="mb-1">Arrived</h6>
+                <h6 class="mb-1">{{__('Arrived')}}</h6>
             </div>
             <!-- Settings-->
             <defs>
@@ -34,24 +34,24 @@
                 <!-- Download Invoice-->
                 <!-- Invoice Info-->
                 <div class="invoice-info text-end mb-4">
-                    <h5 class="mb-1">Arrived</h5>
+                    <h5 class="mb-1">{{__('Arrived')}}</h5>
                 </div>
                 <!-- Invoice Table-->
                 <div class="invoice-table">
                     <div class="table-responsive">
                         <table class="table table-bordered caption-top">
-                            <caption>List of arrived items</caption>
+                            <caption>{{ __('List of arrived items')}}</caption>
                             <thead class="table-light">
                                 <tr>
-                                    <th>Shipped Via</th>
-                                    <th>CTN Qty.</th>
-                                    <th>Recived on</th>
-                                    <th>Description</th>
-                                    <th>Batch No.</th>
-                                    <th>Weight</th>
-                                    <th>ETA</th>
-                                    <th>Container</th>
-                                    <th>Status</th>
+                                    <th>{{ __('Shipped Via')}}</th>
+                                    <th>{{__('CTN Qty.')}}</th>
+                                    <th>{{__('Recived on')}}</th>
+                                    <th>{{__('Description')}}</th>
+                                    <th>{{__('Batch No.')}}</th>
+                                    <th>{{__('Weight')}}</th>
+                                    <th>{{__('ETA')}}</th>
+                                    <th>{{__('Container')}}</th>
+                                    <th>{{__('Status')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -83,7 +83,7 @@
                         </table>
                     </div>
                 </div>
-                <p class="mb-0">Notice:</p>
+                <p class="mb-0">{{__('Notice')}}:</p>
             </div>
         </div>
     </div>

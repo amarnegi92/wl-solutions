@@ -1,13 +1,7 @@
 @extends('layouts.admin.app')
 @section('title', config('app.name', 'Laravel') . ' | News')
 @section('content')
-<?php
-#TODO : move to helper.
-function sanitize($string)
-{
-    return preg_replace('/[^a-zA-Z0-9_.]/', '_', $string);
-}
-?>
+
 <div class="content">
     <div class="container-fluid">
         <div class="page-title">

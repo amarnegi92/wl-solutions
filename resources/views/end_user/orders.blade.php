@@ -9,7 +9,7 @@
             <!-- Back Button-->
             <!-- Page Title-->
             <div class="page-heading">
-                <h6 class="mb-0">Orders</h6>
+                <h6 class="mb-0">{{ __('Orders') }}</h6>
             </div>
             <!-- Settings-->
             <defs>
@@ -28,7 +28,7 @@
     <div class="container">
         <!-- Element Heading-->
         <div class="element-heading">
-            <h6>List Of Orderes</h6>
+            <h6>{{ __('List Of Orders') }}</h6>
         </div>
     </div>
     <?php
@@ -64,7 +64,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div class="timeline-text mb-2"><span class="badge mb-2 rounded-pill"><?php echo date('d/m/Y', strtotime($order['conf_date'])); ?></span>
-                        <h6>Order No. : {!! $order['order_number'] !!}</h6>
+                        <h6>{{ __('Order No.') }} : {!! $order['order_number'] !!}</h6>
                     </div>
                     <div class="timeline-icon mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="20 6 9 17 4 12"></polyline>

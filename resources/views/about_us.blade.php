@@ -20,7 +20,7 @@
           <!-- Page Title-->
 
           <div class="page-heading">
-            <h6 class="mb-0">About Us</h6>
+            <h6 class="mb-0">{{ __('About Us') }}</h6>
           </div>
           <!-- Navbar Toggler-->
         </div>

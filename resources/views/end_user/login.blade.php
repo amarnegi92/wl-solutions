@@ -19,7 +19,7 @@
         <div class="row justify-content-center">
           <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-5">
             @if($errors->any())
-                <span class="text-center alert alert-danger">{{$errors->first()}}</span>
+                <span class="text-center alert alert-danger">{{ __($errors->first()) }}</span>
             @endif
             <div class="text-center px-4"><img class="login-intro-img" src="img/core-img/logo.png" alt=""></div>
             <!-- Register Form-->
@@ -27,12 +27,12 @@
               <form action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="form-group text-start mb-3">
-                  <input class="form-control" name="mobile" type="text" placeholder="Mobile number">
+                  <input class="form-control" name="mobile" type="text" placeholder="{{ __('Mobile number') }}">
                 </div>
                 <div class="form-group text-start mb-3">
-                  <input class="form-control" name="password" type="password" placeholder="Enter Password">
+                  <input class="form-control" name="password" type="password" placeholder="{{ __('Enter Password') }}">
                 </div>
-                <button class="btn btn-primary w-100" type="submit">Sign In</button>
+                <button class="btn btn-primary w-100" type="submit">{{ __('Sign In') }}</button>
               </form>
             </div>
             <!-- Login Meta-->

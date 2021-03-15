@@ -99,7 +99,7 @@
                     @if (Route::has('login'))
                       
                           @auth
-                              <a href="{{ route('profile') }}" class="text-sm text-gray-700 underline">Profile</a>
+                              <a href="{{ route('profile') }}" class="text-sm text-gray-700 underline">{{ __('Profile') }}</a>
                           @else
                               <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">{{ __('Log in') }}</a>
                               @if (Route::has('register'))
@@ -117,7 +117,7 @@
               <a href="{{ route('news') }}">
               <div class="card text-center shadow-sm wow fadeInUp" data-wow-duration="1s">
                 <div class="card-body"><img src="img/demo-img/about-us.png" alt="">
-                  <h6 class="mb-0">News</h6>
+                  <h6 class="mb-0">{{ __('News') }}</h6>
                 </div>
               </div>
             </a>
@@ -126,7 +126,7 @@
               <a href="{{ route('about_us') }}">
               <div class="card text-center shadow-sm wow fadeInUp" data-wow-duration="1s">
                 <div class="card-body"><img src="img/demo-img/services.png" alt="">
-                  <h6 class="mb-0">About Us</h6>
+                  <h6 class="mb-0">{{ __('About Us') }} </h6>
                 </div>
               </div>
             </a>
@@ -135,7 +135,7 @@
               <a href="{{ route('contact_us') }}">
               <div class="card text-center shadow-sm wow fadeInUp" data-wow-duration="1s">
                 <div class="card-body"><img src="img/demo-img/location.png" alt="">
-                  <h6 class="mb-0">Addresses</h6>
+                  <h6 class="mb-0">{{ __('Addresses') }}</h6>
                 </div>
               </div>
             </a>

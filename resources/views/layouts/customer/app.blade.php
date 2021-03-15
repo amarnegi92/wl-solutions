@@ -39,8 +39,6 @@
    
 </head>
 <body>
-    <?php
-    /*
     <div class="float-right position-fixed" style="z-index: 9999">
         <button class="btn btn-secondary disabled" type="button" >
             {{ Config::get('languages')[App::getLocale()] }}
@@ -52,11 +50,7 @@
            </button>
            @endif
         @endforeach    
-    </div>
-    */
-    ?>                
-  
-                
+    </div>      
     @yield('content')
  <!-- Just include for Normal Users --> 
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
