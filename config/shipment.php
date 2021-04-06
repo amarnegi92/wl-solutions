@@ -20,7 +20,8 @@ return [
     'keyStatus' => [
         1 => 'In transet',
         2 => 'Arrived',
-        3 => 'Delivered'
+        3 => 'Delivered',
+        4 => 'Received'
     ],
     'badges' => [
         1 => 'badge-info',
