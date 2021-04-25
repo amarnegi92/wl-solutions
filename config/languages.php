@@ -3,6 +3,6 @@
 return [
     'en' => 'English',
 //    'fr' => 'Français',
-    'ar' => 'Arabic',
-    'ku' => 'Kurdish',
+    'ar' => 'عربي',
+    'ku' => 'کوردی',
 ];

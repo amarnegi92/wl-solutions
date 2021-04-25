@@ -17,7 +17,7 @@ class TransportController extends Controller
 
         return view('admin.arrived', compact('transports'));
     }
-    
+
     public function indexSea() {
         $transport_batches = Transport::whereShipType(config('shipment.transport.sea'))->get()
                 ->map(function ($data) {
@@ -71,20 +71,20 @@ class TransportController extends Controller
 
             $rules = [
                 'ctn_qty' => 'required|max:11',
-                'batch_number' => 'required|max:30',
+                'batch_number' => 'max:30',
                 'user_id' => 'required|exists:users,id',
-                'ship_status' => 'required',
+                'ship_status' => '',
             ];
 
             $addRules = [];
             if (request()->get('ship_type') == config('shipment.transport.sea')) {
                 $addRules = [
-                    'volume' => 'required|max:30',
-                    'container_number' => 'required|max:10',
+                    'volume' => 'max:30',
+                    'container_number' => 'max:50',
                 ];
             } else {
                 $addRules = [
-                    'weight' => 'required|max:30',
+                    'weight' => 'max:30',
                     'received_date' => 'required',
                 ];
             }

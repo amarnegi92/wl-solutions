@@ -43,11 +43,11 @@
         <div class="card image-gallery-card">
           <div class="card-body"><img class="mb-3 rounded" src="img/bg-img/13.jpg" alt="">
             <h5>About Us</h5>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+            <p>Zebra foreign trade co., LTD is a trading company dedicated to the trade between China and Iraq (mainly Chinese export to Iraq). Mainly for mobile phone computer accessories, clothing, shoes and bags, daily provisions, all kinds of household and commercial electrical appliances, cloth, metal and other goods foreign trade services。
+Zebra is dedicated to provide you with integrated trade services, we have branches in guangdong, zhejiang, fujian and other provinces, can include all the goods exported from China to ensure the lowest price, the highest quality, the fastest speed to send China's wide range of goods to your warehouse. To provide you with the best quality service, is the first choice of China and Iraq trade。
+We have long-term cooperation in each category of high-quality manufacturers covering a wide range of goods, can quickly build a supply chain management platform and put into operation, and will continue to establish cooperation with more factories </p>
             <!-- Gallery Wrapper-->
 
-            <h5>Services</h5>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
             <!-- Single Skill Progress Bar-->
             <div class="mb-4 gallery-wrapper row g-3">
               <!-- Single Image Gallery-->

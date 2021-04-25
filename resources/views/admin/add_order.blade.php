@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="status">Customer Code</label>
-                                            <select name="user_id" class="form-control" required>
+                                            <select id="customerCode" name="user_id" class="form-control" required>
                                                 <option value="" selected>Choose...</option>
                                                 @foreach($customer_codes as $user_id => $code)
                                                     <option value="{{ $user_id }}" <?php echo isset($order['user_id']) && $order['user_id'] == $user_id ?  'selected' :''?> >{{ $code }}</option>
@@ -67,3 +67,10 @@
     </div>
 </form>
 @endsection
+@push('custom-scripts')
+    <script>
+        $(function () {
+            $('#customerCode').select2();
+        })
+    </script>
+@endpush

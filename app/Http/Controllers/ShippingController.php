@@ -57,7 +57,7 @@ class ShippingController extends Controller
 
     /**
      * postAddPackage
-     *   -- Function to add package 
+     *   -- Function to add package
      *
      */
     public function postAddPackage(Request $request)
@@ -71,19 +71,19 @@ class ShippingController extends Controller
                 'status' => $request->get('status'),
                 'description' => $request->get('description')
             );
-            
+
             $rules = [
                 'order_number' => 'required|unique:arrived',
                 'conf_date' => 'required',
                 'customer_code' => 'required|exists:users,e_code',
                 'status' => 'required',
             ];
-            
+
             $package_id = $request->get('package_id');
             if ($package_id) {
                 $rules['order_number'] = 'required|unique:arrived,id,'. $package_id;
             }
-            
+
             $validator = Validator::make($request->all(), $rules);
 
             if ($validator->fails()) {
@@ -91,7 +91,7 @@ class ShippingController extends Controller
                         ->withInput();
             }
 
-            $arrive_id = ($package_id) ? Arrived::whereId($package_id)->update($package) 
+            $arrive_id = ($package_id) ? Arrived::whereId($package_id)->update($package)
                 :  Arrived::create($package);
 
         } catch (\Exception $ex) {
@@ -120,7 +120,7 @@ class ShippingController extends Controller
     }
 
     /**
-    * 
+    *
     */
     public function deleteArrived($id) {
         try {
@@ -132,7 +132,7 @@ class ShippingController extends Controller
         } catch(\Exception $ex) {
             Log::error('Error in Customer->getDelete() '. $ex->getMessage(). '\n');
         }
-        
+
         return redirect('admin/arrived');
     }
 
@@ -141,14 +141,13 @@ class ShippingController extends Controller
     * -- function to add/manage shippment
     */
     public function addShipment(Request $request){
-                
+
             $package_ids = $request->get('packageId');
 
             $transportBy = config('shipment.transport');
             $shipmentStatus = config('shipment.status');
-            
+
             $rules = [
-                'batchtext' => 'required',
                 'date' => 'required',
                 'optionsRadios' => 'required',
                 'status' => 'required',
@@ -177,12 +176,12 @@ class ShippingController extends Controller
                             'order_number' =>  $getPackage->order_number,
                             'arrived_id' => $p_id
                         );
-                        
+
                         Shipment::create($batch);
                         $getPackage->status = config('package.keyState.shipped');
                         $getPackage->save();
                     }
-                    
+
                 }
             }
 

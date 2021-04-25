@@ -22,9 +22,10 @@ return [
         2 => 'Arrived',
         3 => 'Delivered',
         4 => 'Received'
+
     ],
     'badges' => [
-        1 => 'badge-info',
+        1 => 'badge-success',
         2 => 'badge-info',
         3 => 'badge-success'
     ]

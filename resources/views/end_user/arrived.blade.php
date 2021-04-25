@@ -43,15 +43,15 @@
                             <caption>{{ __('List of arrived items')}}</caption>
                             <thead class="table-light">
                                 <tr>
-                                    <th>{{ __('Shipped Via')}}</th>
-                                    <th>{{__('CTN Qty.')}}</th>
-                                    <th>{{__('Recived on')}}</th>
-                                    <th>{{__('Description')}}</th>
-                                    <th>{{__('Batch No.')}}</th>
-                                    <th>{{__('Weight')}}</th>
-                                    <th>{{__('ETA')}}</th>
-                                    <th>{{__('Container')}}</th>
-                                    <th>{{__('Status')}}</th>
+                                    <th style="min-width: 110px;">{{ __('Shipped Via')}}</th>
+                                    <th style="min-width: 110px;">{{__('CTN Qty.')}}</th>
+                                    <th style="min-width: 110px;">{{__('Recived on')}}</th>
+                                    <th style="min-width: 400px;">{{__('Description')}}</th>
+                                    <th style="min-width: 110px;">{{__('Batch No.')}}</th>
+                                    <th style="min-width: 110px;">{{__('Weight')}}</th>
+                                    <th style="min-width: 110px;">{{__('ETA')}}</th>
+                                    <th style="min-width: 110px;">{{__('Container')}}</th>
+                                    <th >{{__('Status')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -59,26 +59,26 @@
                                     @foreach($all_arrived as $arrive)
                                     <tr>
                                         <td>
-                                            <h5><span class="">
+                                            <P><span class="">
                                             {{ ucwords(config('shipment.keyTransport.' . $arrive->ship_type)) }}
                                             </span>
-                                            </h5>
+                                          </P>
                                         </td>
-                                        <td>{{ $arrive->ctn_qty }}</td>
-                                        <td>{{ $arrive->received_date ?? 'N/A' }}</td>
-                                        <td>{{ $arrive->description }}</td>
-                                        <td>{{ $arrive->batch_number }}</td>
-                                        <td>{{ $arrive->weight ?? 'N/A' }}</td>
-                                        <td>{{ $arrive->eta }}</td>
+                                        <td style="min-width: 110px;">{{ $arrive->ctn_qty }}</td>
+                                        <td style="min-width: 110px;">{{ $arrive->received_date ?? 'N/A' }}</td>
+                                        <td style="min-width: 400px;">{{ $arrive->description }}</td>
+                                        <td style="min-width: 110px;">{{ $arrive->batch_number }}</td>
+                                        <td style="min-width: 110px;">{{ $arrive->weight ?? 'N/A' }}</td>
+                                        <td style="min-width: 110px;">{{ $arrive->eta }}</td>
                                         <td>{{ $arrive->container_number ?? 'N/A' }}</td>
                                         <td>
                                             <div class="alert alert-primary" role="alert">{{ config('shipment.keyStatus.'. $arrive->ship_status ) }}</div>
                                         </td>
                                     </tr>
                                     @endforeach
-                                @else 
+                                @else
                                     <p>No Record Found</p>
-                                @endif 
+                                @endif
                             </tbody>
                         </table>
                     </div>

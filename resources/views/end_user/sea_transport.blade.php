@@ -45,24 +45,24 @@
                                 <caption>{{ __('List of Sea transport items') }}</caption>
                                 <thead class="table-light">
                                     <tr>
-                                        <th>{{ __('CTN Qty.') }}</th>
-                                        <th>{{ __('Description')}}</th>
-                                        <th>{{ __('Batch No.')}}</th>
-                                        <th>{{ __('Volume')}}</th>
-                                        <th>{{ __('ETA')}}</th>
-                                        <th>{{ __('Container')}} #</th>
-                                        <th>{{ __('Status')}}</th>
+                                        <th style="min-width: 110px;">{{ __('CTN Qty.') }}</th>
+                                        <th style="min-width: 400px;">{{ __('Description')}}</th>
+                                        <th style="min-width: 110px;">{{ __('Batch No.')}}</th>
+                                        <th style="min-width: 110px;">{{ __('Volume')}}</th>
+                                        <th style="min-width: 110px;">{{ __('ETA')}}</th>
+                                        <th style="min-width: 110px;">{{ __('Container')}} #</th>
+                                        <th style="min-width: 110px;">{{ __('Status')}}</th>
                                     </tr>
                                 </thead>
-                                <tbody>                                     
+                                <tbody>
                                         @foreach($batch as $batchId => $batch_val)
                                             <tr>
-                                                <td>{!! $batch_val->ctn_qty !!}</td>
-                                                <td>{!! $batch_val->description !!}</td>
-                                                <td>{!! $batch_val->batch_number !!}</td>
-                                                <td>{!! $batch_val->volume !!}</td>
-                                                <td>{!! $batch_val->eta !!}</td>
-                                                <td>{!! $batch_val->container_number !!}</td>
+                                                <td style="min-width: 110px;">{!! $batch_val->ctn_qty !!}</td>
+                                                <td style="min-width: 400px;">{!! $batch_val->description !!}</td>
+                                                <td style="min-width: 110px;">{!! $batch_val->batch_number !!}</td>
+                                                <td style="min-width: 110px;">{!! $batch_val->volume !!}</td>
+                                                <td style="min-width: 110px;">{!! $batch_val->eta !!}</td>
+                                                <td style="min-width: 110px;">{!! $batch_val->container_number !!}</td>
                                                 <td>
                                                     <div class="alert alert-primary" role="alert"><?php echo config('shipment.keyStatus.' . $batch_val->ship_status); ?></div>
                                                 </td>
@@ -71,11 +71,11 @@
                                 </tbody>
                             </table>
                         @else
-                            <p>No Record Found</p> 
+                            <p>{{ __('No record found') }}</p>
                         @endif
                     </div>
                 </div>
-                <p class="mb-0">Notice:</p>
+                <p class="mb-0">{{ __('Notice') }}</p>
             </div>
         </div>
     </div>

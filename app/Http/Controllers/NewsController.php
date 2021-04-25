@@ -61,6 +61,7 @@ class NewsController extends Controller
                 :  News::create($news_info);
         } catch (\Exception $ex) {
             Log::error('Error in Method ' . __METHOD__ . '. Error: ' . $ex->getMessage() . '\n');
+            return redirect('admin/news')->withErrors(['msg' => 'Something went wrong, unable to save.']);
         }
         return redirect('admin/news');
     }

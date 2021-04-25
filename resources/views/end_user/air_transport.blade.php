@@ -41,37 +41,37 @@
                 <div class="invoice-table">
                     <div class="table-responsive">
                         @if(count($batch))
-                            <table class="table table-bordered caption-top">
+                            <table class="table table-bordered caption-top" >
                                 <caption>{{__('List of air transport items')}}</caption>
                                 <thead class="table-light">
                                     <tr>
-                                        <th>{{__('CTN Qty.')}}</th>
-                                        <th>{{__('Recived on')}}</th>
-                                        <th>{{__('Description')}}</th>
-                                        <th>{{__('Batch No.')}}</th>
+                                        <th style="min-width: 110px;">{{__('CTN Qty.')}}</th>
+                                        <th style="min-width: 110px;">{{__('Recived on')}}</th>
+                                        <th style="min-width: 400px;">{{__('Description')}}</th>
+                                        <th style="min-width: 100px;">{{__('Batch No.')}}</th>
                                         <th>{{__('Weight')}}</th>
-                                        <th>{{__('ETA')}}</th>
-                                        <th>{{__('Status')}}</th>
+                                        <th style="min-width: 110px;">{{__('ETA')}}</th>
+                                        <th style="min-width: 110px;">{{__('Status')}}</th>
                                     </tr>
                                 </thead>
-                                <tbody>                                     
+                                <tbody>
                                         @foreach($batch as $batchId => $batch_val)
                                             <tr>
-                                                <td>{!! $batch_val->ctn_qty !!}</td>
-                                                <td>{!! $batch_val->received_date !!}</td>
-                                                <td>{!! $batch_val->description !!}</td>
-                                                <td>{!! $batch_val->batch_number !!}</td>
+                                                <td style="min-width: 110px;">{!! $batch_val->ctn_qty !!}</td>
+                                                <td style="min-width: 110px;">{!! $batch_val->received_date !!}</td>
+                                                <td style="min-width: 400px;">{!! $batch_val->description !!}</td>
+                                                <td style="min-width: 100px;">{!! $batch_val->batch_number !!}</td>
                                                 <td>{!! $batch_val->weight !!}</td>
-                                                <td>{!! $batch_val->eta !!}</td>
+                                                <td style="min-width: 110px;">{!! $batch_val->eta !!}</td>
                                                 <td>
-                                                    <div class="alert alert-primary" role="alert"><?php echo config('shipment.keyStatus.' . $batch_val->ship_status); ?></div>
+                                                    <div class="alert alert-primary" role="alert" style="min-width: 110px;"><?php echo config('shipment.keyStatus.' . $batch_val->ship_status); ?></div>
                                                 </td>
                                             </tr>
                                         @endforeach
                                 </tbody>
                             </table>
                         @else
-                            <p>No Record Found</p> 
+                            <p>{{ __('No record found') }}</p>
                         @endif
                     </div>
                 </div>

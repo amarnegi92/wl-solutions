@@ -36,23 +36,12 @@
 
     <!-- Web App Manifest-->
     <link rel="manifest" href="manifest.json">
-   
+
 </head>
 <body>
-    <div class="float-right position-fixed" style="z-index: 9999">
-        <button class="btn btn-secondary disabled" type="button" >
-            {{ Config::get('languages')[App::getLocale()] }}
-        </button>
-        @foreach (Config::get('languages') as $lang => $language)
-           @if ($lang != App::getLocale())
-           <button class="btn btn-secondary" type="button" >
-               <a href="{{ route('lang.switch', $lang) }}">{{$language}}</a>
-           </button>
-           @endif
-        @endforeach    
-    </div>      
+
     @yield('content')
- <!-- Just include for Normal Users --> 
+ <!-- Just include for Normal Users -->
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/default/internet-status.js')}}"></script>
@@ -70,9 +59,9 @@
     <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('js/default/active.js')}}"></script>
     <script src="{{asset('js/default/clipboard.js')}}"></script>
- 
-    <!-- PWA-->   
+
+    <!-- PWA-->
     <script src="{{asset('js/pwa.js')}}"></script>
-   
+
 </body>
 </html>

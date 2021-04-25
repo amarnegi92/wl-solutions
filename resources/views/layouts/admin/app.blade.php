@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="{{ asset('css/admin/dataTables.bootstrap4.min.css') }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dmuy/MDTimePicker@v1.0.2-rc2/mdtimepicker.min.css">
         <link rel="stylesheet" href="{{ asset('css/admin/master.css') }}">
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     </head>
     <body>
         <div class="wrapper">
@@ -104,6 +105,7 @@
         <script src="{{ asset('js/admin/DataTables/datatables.min.js') }}"></script>
         <script src="{{ asset('js/admin/initiate-datatables.js') }}"></script>
         <script src="{{ asset('js/admin/script.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script type="text/javascript">
             $.ajaxSetup({
                 headers: {

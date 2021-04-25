@@ -16,13 +16,13 @@ use Redirect;
 class EndUserController extends Controller
 {
     /**
-     * 
+     *
      */
     function profile()
     {
         return view('end_user.profile');
     }
-    
+
     /**
      * postProfile
      */
@@ -33,7 +33,7 @@ class EndUserController extends Controller
                 $rules = [
                     'change_password' => 'required|min:6|max:16',
                 ];
-               
+
                 $validator = Validator::make($request->all(), $rules);
                 if ($validator->fails()) {
                     return back()->withErrors($validator);
@@ -43,7 +43,7 @@ class EndUserController extends Controller
                 return redirect()->route('profile')->with('message', __('The password changed successfully'));
             }
         } catch (Exception $ex) {
-            
+
         }
         return redirect()->route('profile')
             ->withErrors(array('error' => __('Nothing got affected.')));
@@ -51,7 +51,7 @@ class EndUserController extends Controller
     }
 
     /**
-     * 
+     *
      */
     function sea_transport()
     {
@@ -59,7 +59,7 @@ class EndUserController extends Controller
         try {
             $arrived = array();
             $userBatch = array();
-            $arrived = Transport::where('user_id', Auth::user()->id)->where('ship_status', '!=', config('shipment.status.arrived'))->whereShipType(config('shipment.transport.sea'))->get();
+            $arrived = Transport::where('user_id', Auth::user()->id)->where('ship_status', '!=', config('shipment.status.arrived'))->where('ship_status', '!=', config('shipment.status.delivered'))->whereShipType(config('shipment.transport.sea'))->get();
             /*if (count($arrived)) {
                 $arrived = $arrived->toArray();
                 $shipments = Shipment::whereIn('order_number', array_keys($arrived))->whereShipType(2)->get();
@@ -82,14 +82,14 @@ class EndUserController extends Controller
     }
 
     /**
-     * 
+     *
      */
     function air_transport()
     {
         try {
             $arrived = array();
             $userBatch = array();
-            $arrived = Transport::where('user_id', Auth::user()->id)->where('ship_status', '!=', config('shipment.status.arrived'))->whereShipType(config('shipment.transport.air'))->get();
+            $arrived = Transport::where('user_id', Auth::user()->id)->where('ship_status', '!=', config('shipment.status.arrived'))->where('ship_status', '!=', config('shipment.status.delivered'))->whereShipType(config('shipment.transport.air'))->get();
             /*if (count($arrived)) {
                 $arrived = $arrived->toArray();
                 $shipments = Shipment::whereIn('order_number', array_keys($arrived))->whereShipType(1)->get();
@@ -112,7 +112,7 @@ class EndUserController extends Controller
     }
 
     /**
-     * 
+     *
      */
     function orders()
     {
@@ -130,7 +130,7 @@ class EndUserController extends Controller
     }
 
     /**
-     * 
+     *
      */
     function arrived()
     {   $shipmentStatus = config('shipment.status');

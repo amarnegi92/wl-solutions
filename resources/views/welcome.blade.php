@@ -44,20 +44,7 @@
     <!-- Internet Connection Status-->
     <div class="internet-connection-status" id="internetStatus"></div>
     <!-- Header Area-->
-    <div class="header-area" id="headerArea">
-      <div class="container">
-        <!-- Paste your Header Content from here-->
-        <!-- # Header Five Layout-->
-        <!-- # Copy the code from here ...-->
-        <!-- Header Content-->
-        <div class="header-content header-style-five position-relative d-flex align-items-center justify-content-between">
-          <!-- Logo Wrapper-->
-          <div class="logo-wrapper"><a href="home.html"><img src="img/core-img/logo.png" alt=""></a></div>
-          <!-- Navbar Toggler-->
-        </div>
-        <!-- # Header Five Layout End-->
-      </div>
-    </div>
+
     <!-- Sidenav Black Overlay-->
 
     <div class="page-content-wrapper" >
@@ -65,19 +52,21 @@
       <!-- Hero Slides-->
       <div class="owl-carousel-one owl-carousel">
         <!-- Single Hero Slide-->
-        <div class="single-hero-slide " style="background-image: url('img/core-img/banner1.jpg')">
+        <div class="single-hero-slide " style="background-image: url('img/core-img/banner1.jpg');margin-top: -25px;">
 
         </div>
         <!-- Single Hero Slide-->
         <div class="single-hero-slide " style="background-image: url('img/core-img/banner2.jpg')">
           <div class="slide-content h-100 d-flex align-items-center text-center">
+            <!--
             <div class="container">
               <h3 class="text-white" data-animation="fadeInUp" data-delay="100ms" data-wow-duration="500ms">Second News</h3>
               <p class="text-white mb-4" data-animation="fadeInUp" data-delay="400ms" data-wow-duration="500ms">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
             </div>
+            -->
           </div>
         </div>
-        <!-- Single Hero Slide-->
+        <!-- Single Hero Slide
         <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/31.jpg')">
           <div class="slide-content h-100 d-flex align-items-center text-center">
             <div class="container">
@@ -86,6 +75,7 @@
             </div>
           </div>
         </div>
+        -->
       </div>
       <!-- Welcome Toast-->
       <div class="affan-features-wrap py-3">
@@ -97,7 +87,7 @@
                 <div class="card-body"><img src="img/demo-img/person-male.png" alt="">
                   <h6 class="mb-0">
                     @if (Route::has('login'))
-                      
+
                           @auth
                               <a href="{{ route('profile') }}" class="text-sm text-gray-700 underline">{{ __('Profile') }}</a>
                           @else
@@ -106,8 +96,8 @@
                                   <!-- <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a> -->
                               @endif
                           @endauth
-                      
-                    @endif    
+
+                    @endif
                   </h6>
                 </div>
               </div>
@@ -144,12 +134,27 @@
         </div>
       </div>
 
-      <div style="margin: auto; width: 40%; ">
+      <div style="width:100%" >
 
-      <img class="img-fluid" src="img/core-img/logo.png" style="width: 200px; height: 200px; "alt="">
+        <div class="float-center" style="width: 250px; margin: 0 auto; ">
+            <button class="btn btn-secondary disabled" type="button" >
+                {{ Config::get('languages')[App::getLocale()] }}
+            </button>
+            @foreach (Config::get('languages') as $lang => $language)
+               @if ($lang != App::getLocale())
+               <button class="btn btn-secondary" type="button" >
+                   <a href="{{ route('lang.switch', $lang) }}">{{$language}}</a>
+               </button>
+               @endif
+            @endforeach
+            <img class="img-fluid" src="img/core-img/logo.png" style="width: 200px; height: 200px; "alt="">
+
+        </div>
+
     </div>
 
     </div>
+
     <!-- Footer Nav-->
 
     <!-- All JavaScript Files-->
