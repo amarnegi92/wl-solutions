@@ -18,6 +18,7 @@
                     <table width="100%" class="table table-hover" id="dataTables-example">
                         <thead>
                             <tr>
+                                <th class="d-none"></th>
                                 <th>Shipped Via</th>
                                 <th>CTN Qty.</th>
                                 <th>Received on</th>
@@ -34,6 +35,7 @@
                             <?php
                             foreach ($transports as $package) { ?>
                                 <tr>
+                                    <td class="d-none"><?= strtotime(now()) - strtotime($package['created_at']); ?></td>
                                     <td>
                                         <h5><span class="badge {{ config('shipment.badges.' . $package->ship_type) }}">
                                         {{ ucwords(config('shipment.keyTransport.' . $package->ship_type)) }}
