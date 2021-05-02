@@ -23,6 +23,7 @@
                             <th>ETA</th>
                             <th>Container Number</th>
                             <th>Status</th>
+                            <th>Arrived At</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -37,7 +38,19 @@
                             <td>{{ $batch->volume }}</td>
                             <td>{{ $batch->eta }}</td>
                             <td>{{ $batch->container_number }}</td>
-                            <td>{{ config('shipment.keyStatus.' . $batch->ship_status) }}</td>
+                            <td class=" text-center ">
+                                {{ config('shipment.keyStatus.' . $batch->ship_status) }}<br>
+                            </td>
+                            <td class="text-center">
+                                @if ( (config('shipment.status.arrived') ==  $batch->ship_status) &&  $batch->arrived_at )
+                                    <span class="badge badge-secondary">
+                                        {{ date('d M Y', strtotime($batch->arrived_at)) }}
+                                        <br>{{ date('H:i a', strtotime($batch->arrived_at)) }}
+                                    </span>
+                                @else
+                                    N/A
+                                @endif
+                            </td>
                             <td class="text-right">
                                 <a href="{{ route('admin.transport.edit', ['id' => $batch->id] ) }}" class="btn btn-outline-info btn-rounded row-action-edit"><i class="fas fa-pen"></i></a>
                                 <a href="{{ route('admin.transport.delete', ['type' => 'sea', 'id' => $batch->id] ) }}" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i>
