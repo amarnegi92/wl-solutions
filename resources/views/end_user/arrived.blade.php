@@ -44,6 +44,7 @@
                             <thead class="table-light">
                                 <tr>
                                     <th style="min-width: 110px;">{{ __('Shipped Via')}}</th>
+                                    <th style="min-width: 110px;">{{ __('Arrived At')}}</th>
                                     <th style="min-width: 110px;">{{__('CTN Qty.')}}</th>
                                     <th style="min-width: 110px;">{{__('Recived on')}}</th>
                                     <th style="min-width: 400px;">{{__('Description')}}</th>
@@ -63,6 +64,16 @@
                                             {{ ucwords(config('shipment.keyTransport.' . $arrive->ship_type)) }}
                                             </span>
                                           </P>
+                                        </td>
+                                        <td style="min-width: 110px;">        
+                                            @if ( (config('shipment.status.arrived') ==  $arrive->ship_status) &&  $arrive->arrived_at )
+                                                <span>
+                                                    {{ date('d M Y', strtotime($arrive->arrived_at)) }}
+                                                    <br>{{ date('H:i a', strtotime($arrive->arrived_at)) }}
+                                                </span>
+                                            @else
+                                                N/A
+                                            @endif
                                         </td>
                                         <td style="min-width: 110px;">{{ $arrive->ctn_qty }}</td>
                                         <td style="min-width: 110px;">{{ $arrive->received_date ?? 'N/A' }}</td>
