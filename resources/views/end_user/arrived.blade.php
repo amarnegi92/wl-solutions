@@ -12,7 +12,7 @@
 
             <!-- Page Title-->
             <div class="page-heading">
-                <h6 class="mb-1">Arrived</h6>
+                <h6 class="mb-1">{{__('Arrived')}}</h6>
             </div>
             <!-- Settings-->
             <defs>
@@ -34,24 +34,25 @@
                 <!-- Download Invoice-->
                 <!-- Invoice Info-->
                 <div class="invoice-info text-end mb-4">
-                    <h5 class="mb-1">Arrived</h5>
+                    <h5 class="mb-1">{{__('Arrived')}}</h5>
                 </div>
                 <!-- Invoice Table-->
                 <div class="invoice-table">
                     <div class="table-responsive">
                         <table class="table table-bordered caption-top">
-                            <caption>List of arrived items</caption>
+                            <caption>{{ __('List of arrived items')}}</caption>
                             <thead class="table-light">
                                 <tr>
-                                    <th>Shipped Via</th>
-                                    <th>CTN Qty.</th>
-                                    <th>Recived on</th>
-                                    <th>Description</th>
-                                    <th>Batch No.</th>
-                                    <th>Weight</th>
-                                    <th>ETA</th>
-                                    <th>Container</th>
-                                    <th>Status</th>
+                                    <th style="min-width: 110px;">{{ __('Shipped Via')}}</th>
+                                    <th style="min-width: 110px;">{{ __('Arrived At')}}</th>
+                                    <th style="min-width: 110px;">{{__('CTN Qty.')}}</th>
+                                    <th style="min-width: 110px;">{{__('Recived on')}}</th>
+                                    <th style="min-width: 400px;">{{__('Description')}}</th>
+                                    <th style="min-width: 110px;">{{__('Batch No.')}}</th>
+                                    <th style="min-width: 110px;">{{__('Weight')}}</th>
+                                    <th style="min-width: 110px;">{{__('ETA')}}</th>
+                                    <th style="min-width: 110px;">{{__('Container')}}</th>
+                                    <th >{{__('Status')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -59,31 +60,41 @@
                                     @foreach($all_arrived as $arrive)
                                     <tr>
                                         <td>
-                                            <h5><span class="">
+                                            <P><span class="">
                                             {{ ucwords(config('shipment.keyTransport.' . $arrive->ship_type)) }}
                                             </span>
-                                            </h5>
+                                          </P>
                                         </td>
-                                        <td>{{ $arrive->ctn_qty }}</td>
-                                        <td>{{ $arrive->received_date ?? 'N/A' }}</td>
-                                        <td>{{ $arrive->description }}</td>
-                                        <td>{{ $arrive->batch_number }}</td>
-                                        <td>{{ $arrive->weight ?? 'N/A' }}</td>
-                                        <td>{{ $arrive->eta }}</td>
+                                        <td style="min-width: 110px;">        
+                                            @if ( (config('shipment.status.arrived') ==  $arrive->ship_status) &&  $arrive->arrived_at )
+                                                <span>
+                                                    {{ date('d M Y', strtotime($arrive->arrived_at)) }}
+                                                    <br>{{ date('H:i a', strtotime($arrive->arrived_at)) }}
+                                                </span>
+                                            @else
+                                                N/A
+                                            @endif
+                                        </td>
+                                        <td style="min-width: 110px;">{{ $arrive->ctn_qty }}</td>
+                                        <td style="min-width: 110px;">{{ $arrive->received_date ?? 'N/A' }}</td>
+                                        <td style="min-width: 400px;">{{ $arrive->description }}</td>
+                                        <td style="min-width: 110px;">{{ $arrive->batch_number }}</td>
+                                        <td style="min-width: 110px;">{{ $arrive->weight ?? 'N/A' }}</td>
+                                        <td style="min-width: 110px;">{{ $arrive->eta }}</td>
                                         <td>{{ $arrive->container_number ?? 'N/A' }}</td>
                                         <td>
                                             <div class="alert alert-primary" role="alert">{{ config('shipment.keyStatus.'. $arrive->ship_status ) }}</div>
                                         </td>
                                     </tr>
                                     @endforeach
-                                @else 
+                                @else
                                     <p>No Record Found</p>
-                                @endif 
+                                @endif
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <p class="mb-0">Notice:</p>
+                <p class="mb-0">{{__('Notice')}}:</p>
             </div>
         </div>
     </div>
