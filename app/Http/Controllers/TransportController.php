@@ -99,10 +99,22 @@ class TransportController extends Controller
                     ->withInput();
             }
 
+            if ( $transport['ship_status'] == config('shipment.status.arrived') ) {
+                if ($transport_id) {
+                    $fetched_transport_array = Transport::whereId($transport_id)->first();
+                    if ($fetched_transport_array && ($fetched_transport_array['ship_status'] != config('shipment.status.arrived'))) {
+                        $transport['arrived_at'] = date('Y-m-d H:i:s');
+                    }
+                } else {
+                    $transport['arrived_at'] = date('Y-m-d H:i:s');
+                }
+            }
+
             $result = ($transport_id) ? Transport::whereId($transport_id)->update($transport)
                 :  Transport::create($transport);
         } catch (\Exception $ex) {
             Log::error('Error in ' . __METHOD__ . ' Error is: ' . $ex->getMessage() . '\n');
+            return back()->withErrors(['msg' => 'Something went wrong. Your data could not be saved.'])->withInput();
         }
 
         return ($request->get('ship_type') == config('shipment.transport.sea')) ?
